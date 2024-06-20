@@ -12,26 +12,30 @@ const Form = () => {
     queries: [''],
   });
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleArrayChange = (e:any, index:any, field:any) => {
+  const handleArrayChange = (e: any, index: any, field: any) => {
     const newArray = [...formData[field]];
     newArray[index] = e.target.value;
     setFormData({ ...formData, [field]: newArray });
   };
 
-  const addArrayField = (field:any) => {
+  const addArrayField = (field: any) => {
     setFormData({ ...formData, [field]: [...formData[field], ''] });
   };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    
+
     try {
-      const response = await fetch('http://localhost:8080/estimate', {
+      const apiUrl = window.location.hostname === 'localhost'
+        ? 'http://localhost:8080/estimate'
+        : 'https://estimate-efforts.onrender.com/estimate';
+
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,8 +46,6 @@ const Form = () => {
       if (!response.ok) {
         throw new Error('Failed to fetch');
       }
-
-      // Convert response to blob and create a URL to trigger download
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -54,7 +56,7 @@ const Form = () => {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      
+
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -90,7 +92,7 @@ const Form = () => {
         {['assumptions', 'queries'].map((field, index) => (
           <div className="mb-4" key={index}>
             <label className="block text-sm font-medium text-gray-700">{field.charAt(0).toUpperCase() + field.slice(1)}</label>
-            {formData[field].map((value:any, idx:any) => (
+            {formData[field].map((value: any, idx: any) => (
               <div className="mb-2" key={idx}>
                 <input
                   type="text"
