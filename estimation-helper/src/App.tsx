@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import rwsLogo from './assets/rwsbanner2.png'
 import add from './assets/add.png'
 import del from './assets/del.png'
+import excel from './assets/excel.png'
 import { URL, initialFormData } from './utils/constants/contants';
 const Form = () => {
-  
+  const [loading, setLoading] = useState<any>(false);
   const [formData, setFormData] = useState<any>(initialFormData);
 
   const handleChange = (e: any) => {
@@ -31,8 +32,8 @@ const Form = () => {
   };
 
   const handleSubmit = async (e: any) => {
+    setLoading(true)
     e.preventDefault();
-
     try {
       const apiUrl = window.location.hostname === 'localhost'
         ? URL.LOCAL
@@ -47,19 +48,21 @@ const Form = () => {
       });
 
       if (!response.ok) {
+        setLoading(false)
         throw new Error('Failed to fetch');
+      }else{
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = `${formData?.projectName}-Estimate.xlsx`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        setLoading(false)
       }
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.style.display = 'none';
-      a.href = url;
-      a.download = `${formData?.projectName}-Estimate.xlsx`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
-      setFormData(initialFormData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -68,7 +71,7 @@ const Form = () => {
 
   return (
     <div className="animate-fade max-w-md mx-auto my-10 bg-white p-8 rounded-md shadow-md justify-center">
-      <img alt='image' src={rwsLogo} className='mb-5 rounded-lg'></img>
+      <img alt='logo' src={rwsLogo} className='mb-5 rounded-lg'></img>
       <form onSubmit={handleSubmit} >
       <div className='flex gap-5'>
         <div>
@@ -135,9 +138,9 @@ const Form = () => {
         <div className="mb-4">
           <button
             type="submit"
-            className="w-full bg-[#007373] text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
+            className={`${loading ? "w-full bg-[white] border-2 border-[#007373] text-white py-2 px-4 rounded-md hover:bg-[#009688] focus:outline-none focus:bg-[#009688] justify-center" : `w-full bg-[#007373] text-white py-2 px-4 rounded-md hover:bg-[#009688] focus:outline-none focus:bg-[#009688] justify-center`}`}
           >
-            Submit
+            {loading ? <div className='flex justify-center'><img alt='excel' src={excel} className='h-5 w-5 animate-pulse'/><p className='ml-2 my-auto text-[#007373]'>Estimating</p></div>: <p>Submit</p>}
           </button>
         </div>
       </form>
