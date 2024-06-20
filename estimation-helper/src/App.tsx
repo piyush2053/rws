@@ -6,7 +6,7 @@ import excel from './assets/excel.png'
 import { URL, initialFormData } from './utils/constants/contants';
 const Form = () => {
   const [loading, setLoading] = useState<any>(false);
-  const [error, setError] = useState<any>(true);
+  const [error, setError] = useState<any>(false);
   const [formData, setFormData] = useState<any>(initialFormData);
 
   const handleChange = (e: any) => {
