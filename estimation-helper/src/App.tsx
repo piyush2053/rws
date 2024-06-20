@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-
+import rwsLogo from './assets/rwsbanner.png'
 const Form = () => {
-  const [formData, setFormData] = useState<any>({
-    companyName: '',
-    effortDays: 80,
-    numberOfResource: 3,
-    numberOfTester: 2,
+  const initialFormData = {
+    effortDays: 0,
+    numberOfResource: 0,
+    numberOfTester: 0,
     numberOfProjectManager: 0,
     projectName: '',
     assumptions: [''],
     queries: [''],
-  });
+  }
+  const [formData, setFormData] = useState<any>(initialFormData);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -56,7 +56,7 @@ const Form = () => {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-
+      setFormData(initialFormData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -65,10 +65,10 @@ const Form = () => {
 
   return (
     <div className="max-w-md mx-auto my-10 bg-white p-8 rounded-md shadow-md justify-center">
-      <h2 className="text-2xl font-semibold mb-6 text-center">Company Information</h2>
+      <img alt='image' src={rwsLogo} className='mb-5 rounded-lg'></img>
+      {/* <h2 className="text-2xl font-semibold mb-6 ">Estimation Template</h2> */}
       <form onSubmit={handleSubmit}>
         {[
-          { label: 'Company Name', name: 'companyName' },
           { label: 'Project Name', name: 'projectName' },
           { label: 'Effort Days', name: 'effortDays', type: 'number' },
           { label: 'Number of Resource', name: 'numberOfResource', type: 'number' },
