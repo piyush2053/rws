@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 body {
+  background-image: url('./assets/bg1.png');
+  background-size: cover;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
