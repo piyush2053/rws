@@ -6,6 +6,7 @@ import excel from './assets/excel.png'
 import { URL, initialFormData } from './utils/constants/contants';
 const Form = () => {
   const [loading, setLoading] = useState<any>(false);
+  const [error, setError] = useState<any>(true);
   const [formData, setFormData] = useState<any>(initialFormData);
 
   const handleChange = (e: any) => {
@@ -33,6 +34,7 @@ const Form = () => {
 
   const handleSubmit = async (e: any) => {
     setLoading(true)
+    setError(false)
     e.preventDefault();
     try {
       const apiUrl = window.location.hostname === 'localhost'
@@ -49,6 +51,7 @@ const Form = () => {
 
       if (!response.ok) {
         setLoading(false)
+        setError(true)
         throw new Error('Failed to fetch');
       }else{
         const blob = await response.blob();
@@ -62,6 +65,7 @@ const Form = () => {
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
         setLoading(false)
+        setError(false)
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -142,6 +146,13 @@ const Form = () => {
           >
             {loading ? <div className='flex justify-center'><img alt='excel' src={excel} className='h-5 w-5 animate-pulse'/><p className='ml-2 my-auto text-[#007373]'>Estimating</p></div>: <p>Submit</p>}
           </button>
+          {error &&
+          <div className='flex justify-center mt-2 bg-[#FFCDD2] border-2 border-[#EF5350] rounded-sm'>
+             <label className="block text-sm font-medium text-gray-700 justify-center py-2">
+              Error, Please try again
+            </label>
+          </div>
+          }
         </div>
       </form>
     </div>
