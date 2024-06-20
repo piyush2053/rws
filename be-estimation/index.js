@@ -28,7 +28,7 @@ app.post("/estimate", async (req, res) => {
 
     // Modify sheet 1 (WBS)
     const sheet1 = workbook.getWorksheet('WBS');
-    sheet1.getCell('E15').value = effortDays;
+    sheet1.getCell('E8').value = effortDays;
     sheet1.getCell('D2').value = projectName;
 
     // Modify sheet 2 (Schedule)
@@ -49,7 +49,7 @@ app.post("/estimate", async (req, res) => {
     }
     // Write queries starting from C8
     for (let i = 0; i < queries.length; i++) {
-        sheet3.getCell(`C${8 + i}`).value = queries[i];
+        sheet3.getCell(`F${4 + i}`).value = queries[i];
     }
 
     // Generate a temporary file path for the new Excel file
