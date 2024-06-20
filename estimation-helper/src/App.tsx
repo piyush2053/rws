@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
-import rwsLogo from './assets/rwsbanner.png'
+import rwsLogo from './assets/rwsbanner2.png'
+import add from './assets/add.png'
+import del from './assets/del.png'
+import { URL, initialFormData } from './utils/constants/contants';
 const Form = () => {
-  const initialFormData = {
-    effortDays: 0,
-    numberOfResource: 0,
-    numberOfTester: 0,
-    numberOfProjectManager: 0,
-    projectName: '',
-    assumptions: [''],
-    queries: [''],
-  }
+  
   const [formData, setFormData] = useState<any>(initialFormData);
 
   const handleChange = (e: any) => {
@@ -27,13 +22,21 @@ const Form = () => {
     setFormData({ ...formData, [field]: [...formData[field], ''] });
   };
 
+  const deleteArrayField = (index: number, field: string) => {
+    if (formData[field].length > 1) { 
+      const newArray = [...formData[field]];
+      newArray.splice(index, 1);
+      setFormData({ ...formData, [field]: newArray });
+    }
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     try {
       const apiUrl = window.location.hostname === 'localhost'
-        ? 'http://localhost:8080/estimate'
-        : 'https://estimate-efforts.onrender.com/estimate';
+        ? URL.LOCAL
+        : URL.PROD
 
       const response = await fetch(apiUrl, {
         method: 'POST',
@@ -51,7 +54,7 @@ const Form = () => {
       const a = document.createElement('a');
       a.style.display = 'none';
       a.href = url;
-      a.download = 'estimate.xlsx';
+      a.download = `${formData?.projectName}-Estimate.xlsx`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
@@ -64,10 +67,11 @@ const Form = () => {
 
 
   return (
-    <div className="max-w-md mx-auto my-10 bg-white p-8 rounded-md shadow-md justify-center">
+    <div className="animate-fade max-w-md mx-auto my-10 bg-white p-8 rounded-md shadow-md justify-center">
       <img alt='image' src={rwsLogo} className='mb-5 rounded-lg'></img>
-      {/* <h2 className="text-2xl font-semibold mb-6 ">Estimation Template</h2> */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
+      <div className='flex gap-5'>
+        <div>
         {[
           { label: 'Project Name', name: 'projectName' },
           { label: 'Effort Days', name: 'effortDays', type: 'number' },
@@ -89,11 +93,13 @@ const Form = () => {
             />
           </div>
         ))}
+        </div>
+        <div>
         {['assumptions', 'queries'].map((field, index) => (
           <div className="mb-4" key={index}>
             <label className="block text-sm font-medium text-gray-700">{field.charAt(0).toUpperCase() + field.slice(1)}</label>
-            {formData[field].map((value: any, idx: any) => (
-              <div className="mb-2" key={idx}>
+            {formData[field].map((value: string, idx: number) => (
+              <div className="flex mb-2" key={idx}>
                 <input
                   type="text"
                   value={value}
@@ -101,21 +107,35 @@ const Form = () => {
                   onChange={(e) => handleArrayChange(e, idx, field)}
                   required
                 />
+                {formData[field].length > 1 &&
+                <button
+                  type="button"
+                  style={{zIndex:"999999", marginLeft:'-30px'}}
+                  className='my-auto'
+                  onClick={() => deleteArrayField(idx, field)}
+                >
+                  <img alt='del' src={del} className='h-5 w-5 rounded-full'/>
+                </button>}
               </div>
             ))}
             <button
               type="button"
-              className="w-full bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300"
+              className="w-fullhover:bg-gray-300"
               onClick={() => addArrayField(field)}
             >
-              Add More {field.charAt(0).toUpperCase() + field.slice(1)}
+              <div className='flex'>
+              <img alt='add' src={add} className='h-5 w-5 rounded-full'/>
+              <p className='text-gray-700 text-xs pl-2 py-auto'>Add More {field.charAt(0).toUpperCase() + field.slice(1)}</p>
+              </div>
             </button>
           </div>
         ))}
+        </div>
+        </div>
         <div className="mb-4">
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
+            className="w-full bg-[#007373] text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
           >
             Submit
           </button>
