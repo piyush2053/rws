@@ -1,5 +1,5 @@
 # Estimation Helper for a Project 
-![Screenshot](./assets/ss.png)
+![Screenshot](./estimation-helper//src/assets//ss.png)
 
 
 ## Whom to Talk ?
