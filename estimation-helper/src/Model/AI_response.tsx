@@ -6,6 +6,7 @@ import '../index.css'
 const ModalAI: React.FC<{ data: any }> = ({ data }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+    const [error1, setError1] = useState(false);
     const [apiData, setApiData] = useState<ApiData | null>(null);
 
     const API_ENDPOINT = window.location.hostname === 'localhost'
@@ -20,6 +21,7 @@ const ModalAI: React.FC<{ data: any }> = ({ data }) => {
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
+                setError1(true);
             });
     }, []);
 
@@ -82,6 +84,7 @@ const ModalAI: React.FC<{ data: any }> = ({ data }) => {
                     ) : (
                         <div className="flex justify-center">
                             <img src={Loader} alt="loading gif" className="h-10 w-10" />
+                            {error1 && <label className="block text-xs font-medium text-gray-700 justify-center py-1">Error, Please try to reload</label>}
                         </div>
                     )}
                 </div>
