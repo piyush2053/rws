@@ -13,7 +13,11 @@ const ModalAI = ({ data }) => {
         : URL.GENAI_PROD
 
     useEffect(() => {
-        fetch(`${API_ENDPOINT}/askai?query="${JSON.stringify(data)} Here calculate the Scehdule of this project from efforts days of this project, consider efforts days are full to be utilized by each resource 100% so calculate the Person days"`)
+        fetch(`${API_ENDPOINT}/askai?query="${JSON.stringify(data)} Here calculate the Scehdule of this project from efforts days of this project, consider efforts days are full to be utilized by each resource 100% so calculate the Person days, Assume that we have task like this Task 1: Requirements Gathering (3 days)
+Task 2: Design 
+Task 3: Development 
+Task 4: Testing
+Task 5: Deployment Divide accordingly"`)
             .then(response => response.json())
             .then(data => {
                 setApiData(data);
@@ -87,18 +91,22 @@ const ModalAI = ({ data }) => {
                 </div>
                 {apiData &&
                     <div className={`flex ${loading ? 'justify-center' : 'justify-between'}`}>
-                        {!loading && <button
-                            onClick={handleGenerate}
-                            disabled={loading}
-                            className={`bg-[#007373] text-white text-[10px] py-2 px-4 rounded-lg hover:bg-[#009688] focus:outline-none focus:bg-[#009688] justify-center`}>
-                            Generate Excel
-                        </button>}
+                        {!loading &&
+                            <div className="flex">
+                                <button
+                                    onClick={handleGenerate}
+                                    disabled={loading}
+                                    className={`bg-[#007373] text-white text-[10px] py-2 px-4 rounded-lg hover:bg-[#009688] focus:outline-none focus:bg-[#009688] justify-center mr-2`}>
+                                    Generate Excel
+                                </button>
+                            </div>
+                        }
                         {loading && <img alt='loading 1' src={Loader} className="h-6 w-6 mr-3" />}
                     </div>
                 }
                 {error &&
-                    <div className='flex justify-center mt-2 bg-[#FFCDD2] border-2 border-[#EF5350] rounded-sm'>
-                        <label className="block text-sm font-medium text-gray-700 justify-center py-2">
+                    <div className='flex justify-center mt-2 bg-[#FFCDD2] border-1 border-[#EF5350] rounded-sm'>
+                        <label className="block text-xs font-medium text-gray-700 justify-center py-1">
                             Error, Please try again
                         </label>
                     </div>
