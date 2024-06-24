@@ -2,7 +2,7 @@
 ![Screenshot](./estimation-helper//src/assets//ss//bannerReadme.png)
 
 ## Live
-https://estimate-efforts.vercel.app/
+https://estimate-efforts.vercel.app/  :computer:
 
 ## Overview
 Our Estimate Efforts Helper helps RWS managers and business analysts easily estimate project efforts. With AI, you can:
@@ -15,5 +15,5 @@ Get accurate project schedules
 ## Whom to Talk ?
 <img src="./estimation-helper/src/assets/ss/ME.png" alt="Piyush Patel" style="width: 100px; height: 100px;border-radius: 50px; border:none">
 
-## Piyush Patel
-piyushpatel2053@gmail.com
+> Piyush Patel
+> piyushpatel2053@gmail.com
