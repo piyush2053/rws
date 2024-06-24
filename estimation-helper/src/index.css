@@ -17,3 +17,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.custom-scrollbar {
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin; 
+  scrollbar-color: rgb(208, 208, 208) #f4f4f4;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  border-radius: 50px;
+  width: 6px; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f4f4f4;
+  border-radius: 50px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: gray; 
+  border-radius: 50px;
+  border: 1px solid #f4f4f4;
+}

@@ -1,6 +1,8 @@
 export const URL = {
 PROD: 'https://estimate-efforts.onrender.com/estimate',
-LOCAL:"http://localhost:8080/estimate"
+LOCAL:"http://localhost:8080/estimate",
+GENAI_LOCAL:"http://localhost:8090",
+GENAI_PROD:'https://generative-ai-0y8e.onrender.com'
 }
 
 export const initialFormData = {

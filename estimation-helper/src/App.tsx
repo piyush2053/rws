@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import rwsLogo from './assets/rwsbanner2.png'
 import add from './assets/add.png'
 import del from './assets/del.png'
@@ -6,10 +6,11 @@ import excel from './assets/excel.png'
 import pp from './assets/ppIntials.png'
 
 import { URL, initialFormData } from './utils/constants/contants';
+import ModelAI from './Model/AI_response';
 const Form = () => {
-  const [loading, setLoading] = useState<any>(false);
+
+  const [ModalShow, setModalShow] = useState<any>(false);
   const [flip, setFlip] = useState<any>(false);
-  const [error, setError] = useState<any>(false);
   const [formData, setFormData] = useState<any>(initialFormData);
 
   const handleChange = (e: any) => {
@@ -36,48 +37,9 @@ const Form = () => {
   };
 
   const handleSubmit = async (e: any) => {
-    setLoading(true)
-    setFlip(true)
-    setError(false)
     e.preventDefault();
-    try {
-      const apiUrl = window.location.hostname === 'localhost'
-        ? URL.LOCAL
-        : URL.PROD
-
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok || response.status !== 200) {
-        setLoading(false)
-        setFlip(false)
-        setError(true)
-        throw new Error('Failed to fetch');
-      } else {
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = url;
-        a.download = `${formData?.projectName}-Estimate.xlsx`;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-        setLoading(false)
-        setFlip(false)
-        setError(false)
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
+    setModalShow(true)
   };
-
 
   return (
     <div className="animate-fade max-w-md mx-auto my-10 bg-white p-8 rounded-md shadow-md justify-center">
@@ -148,19 +110,13 @@ const Form = () => {
         <div className="mb-4">
           <button
             type="submit"
-            className={`${loading ? "w-full bg-[white] border-2 border-[#007373] text-white py-2 px-4 rounded-md justify-center" : `w-full bg-[#007373] text-white py-2 px-4 rounded-md hover:bg-[#009688] focus:outline-none focus:bg-[#009688] justify-center`}`}
+            className={`w-full bg-[#007373] text-white py-2 px-4 rounded-md hover:bg-[#009688] focus:outline-none focus:bg-[#009688] justify-center`}
           >
-            {loading ? <div className='flex justify-center'><img alt='excel' src={excel} className='h-5 w-5 animate-pulse' /><p className='ml-2 my-auto text-[#007373]'>Estimating</p></div> : <p>Submit</p>}
+            Submit
           </button>
-          {error &&
-            <div className='flex justify-center mt-2 bg-[#FFCDD2] border-2 border-[#EF5350] rounded-sm'>
-              <label className="block text-sm font-medium text-gray-700 justify-center py-2">
-                Error, Please try again
-              </label>
-            </div>
-          }
         </div>
       </form>
+      {ModalShow && <ModelAI data={formData}></ModelAI>}
     </div>
   );
 };
