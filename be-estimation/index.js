@@ -19,7 +19,8 @@ app.post("/estimate", async (req, res) => {
             numberOfProjectManager,
             projectName,
             assumptions,
-            queries
+            queries,
+            ai_input
         } = req.body;
         const templateFilePath = path.join(__dirname, 'template.xlsx');
         const workbook = new ExcelJS.Workbook();
@@ -48,6 +49,8 @@ app.post("/estimate", async (req, res) => {
         for (let i = 0; i < queries.length; i++) {
             sheet3.getCell(`F${4 + i}`).value = queries[i];
         }
+        const sheet4 = workbook.getWorksheet('AI Input');
+        sheet4.getCell('A2').value = JSON.stringify(ai_input).replace(/\*/g, '').replace(/\#/g, '').replace(/\\n/g, '').replace('{"response":"','');
 
         const outputFile = path.join(__dirname, `output_${Date.now()}.xlsx`);
 

@@ -33,11 +33,10 @@ code {
 
 .custom-scrollbar::-webkit-scrollbar-track {
   background: #f4f4f4;
-  border-radius: 50px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: gray; 
-  border-radius: 50px;
+  border-radius: 3px;
   border: 1px solid #f4f4f4;
 }

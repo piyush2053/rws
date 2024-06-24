@@ -13,7 +13,7 @@ const ModalAI = ({ data }) => {
         : URL.GENAI_PROD
 
     useEffect(() => {
-        fetch(`${API_ENDPOINT}/askai?query="${JSON.stringify(data)} Here calculate the Scehdule of this project from efforts days of this project "`)
+        fetch(`${API_ENDPOINT}/askai?query="${JSON.stringify(data)} Here calculate the Scehdule of this project from efforts days of this project, consider efforts days are full to be utilized by each resource 100% so calculate the Person days"`)
             .then(response => response.json())
             .then(data => {
                 setApiData(data);
@@ -31,13 +31,13 @@ const ModalAI = ({ data }) => {
             const apiUrl = window.location.hostname === 'localhost'
                 ? URL.LOCAL
                 : URL.PROD
-
+            const postData = { ...data, ai_input: apiData };
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(postData),
             });
 
             if (!response.ok || response.status !== 200) {
@@ -62,6 +62,7 @@ const ModalAI = ({ data }) => {
             console.error('Error fetching data:', error);
         }
     }
+
     return (
         <div className={`fixed inset-0 z-50 flex items-center justify-center backdrop-filter backdrop-blur-sm animate-fade`} >
             <div className="bg-white rounded-lg p-8 w-full max-w-lg mx-4 shadow-2xl" style={{ border: '5px solid linear-gradient(to bottom right, #007373, #00bf63)' }}>
@@ -72,9 +73,10 @@ const ModalAI = ({ data }) => {
                             <ul className="custom-scrollbar p-2 bg-[#ECEFF1] rounded-lg">
                                 {Object.entries(apiData).map(([key, value]) => (
                                     <li key={key} className="text-[12px]">
-                                        {value.replace(/\*/g, '').replace(/\#/g, '')}
+                                        <div dangerouslySetInnerHTML={{ __html: value.replace(/\*/g, '').replace(/\#/g, '').replace(/\n/g, '<br/>') }} />
                                     </li>
                                 ))}
+
                             </ul>
                         </>
                     ) : (
@@ -84,16 +86,16 @@ const ModalAI = ({ data }) => {
                     )}
                 </div>
                 {apiData &&
-                <div className={`flex ${loading ? 'justify-center' : 'justify-between'}`}>
-                    {!loading && <button
-                        onClick={handleGenerate}
-                        disabled={loading}
-                        className={`bg-[#007373] text-white text-[10px] py-2 px-4 rounded-lg hover:bg-[#009688] focus:outline-none focus:bg-[#009688] justify-center`}>
-                        Proceed to Estimating
-                    </button>}
-                    {loading && <img alt='loading 1' src={Loader} className="h-6 w-6 mr-3" />}
+                    <div className={`flex ${loading ? 'justify-center' : 'justify-between'}`}>
+                        {!loading && <button
+                            onClick={handleGenerate}
+                            disabled={loading}
+                            className={`bg-[#007373] text-white text-[10px] py-2 px-4 rounded-lg hover:bg-[#009688] focus:outline-none focus:bg-[#009688] justify-center`}>
+                            Generate Excel
+                        </button>}
+                        {loading && <img alt='loading 1' src={Loader} className="h-6 w-6 mr-3" />}
                     </div>
-                    }
+                }
                 {error &&
                     <div className='flex justify-center mt-2 bg-[#FFCDD2] border-2 border-[#EF5350] rounded-sm'>
                         <label className="block text-sm font-medium text-gray-700 justify-center py-2">
