@@ -13,6 +13,6 @@ Get accurate project schedules
 3. Streamline your project management with our smart and efficient tool.
 
 ## Whom to Talk ?
-<img src="./estimation-helper/src/assets/ss/ME.png" alt="Piyush Patel" style="border-radius: 50px; width: 100px; height: 100px;">
+<img src="./estimation-helper/src/assets/ss/ME.png" alt="Piyush Patel" style="width: 100px; height: 100px;border-radius: 50px; border:none">
 Piyush Patel
 piyushpatel2053@gmail.com
