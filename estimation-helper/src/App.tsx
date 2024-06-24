@@ -85,7 +85,7 @@ const Form = () => {
                     {formData[field].length > 1 &&
                       <button
                         type="button"
-                        style={{ zIndex: "999999", marginLeft: '-30px' }}
+                        style={{ marginLeft: '-30px' }}
                         className='my-auto'
                         onClick={() => deleteArrayField(idx, field)}
                       >
