@@ -14,5 +14,6 @@ Get accurate project schedules
 
 ## Whom to Talk ?
 <img src="./estimation-helper/src/assets/ss/ME.png" alt="Piyush Patel" style="width: 100px; height: 100px;border-radius: 50px; border:none">
-Piyush Patel
+
+## Piyush Patel
 piyushpatel2053@gmail.com
