@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { URL } from "../utils/constants/contants";
+import { ApiData, URL } from "../utils/constants/contants";
 import Loader from '../assets/loader.gif'
 import AI from '../assets/aiRWS.png'
 import '../index.css'
-const ModalAI = ({ data }) => {
+const ModalAI: React.FC<{ data: any }> = ({ data }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-    const [apiData, setApiData] = useState(null);
+    const [apiData, setApiData] = useState<ApiData | null>(null);
 
     const API_ENDPOINT = window.location.hostname === 'localhost'
         ? URL.GENAI_LOCAL
@@ -23,7 +23,7 @@ const ModalAI = ({ data }) => {
             });
     }, []);
 
-    const handleGenerate = async (e) => {
+    const handleGenerate = async (e:any) => {
         setLoading(true)
         setError(false)
         e.preventDefault();
