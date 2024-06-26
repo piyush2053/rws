@@ -1,3 +1,5 @@
+const path = require('path');
+
 const MakingSchedule = (assumptions, sheet3, sheet2, workbook, effortDays, numberOfResource, numberOfTester, numberOfProjectManager, queries, ai_input) => {
     for (let i = 0; i < assumptions.length; i++) {
         sheet3.getCell(`C${4 + i}`).value = assumptions[i];
@@ -7,7 +9,6 @@ const MakingSchedule = (assumptions, sheet3, sheet2, workbook, effortDays, numbe
     }
     const sheet4 = workbook.getWorksheet('AI Input');
     sheet4.getCell('A2').value = JSON.stringify(ai_input).replace(/\*/g, '').replace(/\#/g, '').replace(/\\n/g, '').replace('{"response":"', '');
-
     let effortsTemp = effortDays
     const dailyHoursPerResource = 8;
     const totalPersonDays = effortsTemp * dailyHoursPerResource;
@@ -46,7 +47,6 @@ const MakingSchedule = (assumptions, sheet3, sheet2, workbook, effortDays, numbe
         }
         effortsTemp -= Math.min(effortsTemp, dailyHoursPerResource * numberOfTester);
     }
-
 }
 
 

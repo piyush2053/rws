@@ -29,11 +29,20 @@ app.post("/estimate", async (req, res) => {
 
         const sheet1 = workbook.getWorksheet('WBS');
         sheet1.getCell('E8').value = Number(effortDays);
-        for(let i = 0; i < 4; i++) {
-            sheet1.getCell(`E1${i}`).value = Number(0);    
+        for (let i = 0; i < 4; i++) {
+            sheet1.getCell(`E1${i}`).value = Number(0);
         }
         sheet1.getCell('D2').value = projectName;
-
+        const sheet4 = workbook.getWorksheet('AI Input');
+        const imagePath = path.join(__dirname, './Utils/assets/aiRWS.png');
+        const imageId = workbook.addImage({
+            filename: imagePath,
+            extension: 'png',
+        });
+        sheet4.addImage(imageId, {
+            tl: { col: 0, row: 0 },
+            br: { col: 1, row: 1 }
+        });
         const sheet2 = workbook.getWorksheet('Schedule');
         sheet2.getCell('B2').value = projectName;
         sheet2.getCell("B7").value = `Resources - (${numberOfResource})`;
@@ -43,7 +52,7 @@ app.post("/estimate", async (req, res) => {
         const sheet3 = workbook.getWorksheet('Assumption & Queries');
         sheet3.getCell("D2").value = projectName
         MakingSchedule(assumptions, sheet3, sheet2, workbook, effortDays, numberOfResource, numberOfTester, numberOfProjectManager, queries, ai_input);
-        
+
         const outputFile = path.join(__dirname, `output_${Date.now()}.xlsx`);
         await workbook.xlsx.writeFile(outputFile);
         const fileContents = fs.readFileSync(outputFile);
