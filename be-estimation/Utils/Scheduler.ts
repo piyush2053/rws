@@ -14,7 +14,7 @@ const MakingSchedule = (assumptions, sheet3, sheet2, workbook, effortDays, numbe
     const personDaysPerResource = totalPersonDays / numberOfResource;
 
     let currentRow = 7;
-    let currentColumn = 'G';
+    let currentColumn = 'F';
     for (let i = 0; i < effortsTemp; i++) {
         sheet2.getCell(`${currentColumn}${currentRow}`).value = dailyHoursPerResource * numberOfResource;
         currentColumn = String.fromCharCode(currentColumn.charCodeAt(0) + 1);
@@ -29,7 +29,7 @@ const MakingSchedule = (assumptions, sheet3, sheet2, workbook, effortDays, numbe
 
     if (numberOfTester > 0) {
         currentRow = 8;
-        let currentColumn = 'G';
+        let currentColumn = 'F';
         for (let i = 0; i <= Math.min(effortsTemp, dailyHoursPerResource * numberOfTester); i++) {
             sheet2.getCell(`${currentColumn}${currentRow}`).value = dailyHoursPerResource * numberOfTester;
             currentColumn = String.fromCharCode(currentColumn.charCodeAt(0) + 1);
@@ -39,7 +39,7 @@ const MakingSchedule = (assumptions, sheet3, sheet2, workbook, effortDays, numbe
 
     if (numberOfProjectManager > 0) {
         currentRow = 9;
-        let currentColumn = 'G';
+        let currentColumn = 'F';
         for (let i = 0; i <= Math.min(effortsTemp, dailyHoursPerResource * numberOfProjectManager); i++) {
             sheet2.getCell(`${currentColumn}${currentRow}`).value = dailyHoursPerResource * numberOfProjectManager;
             currentColumn = String.fromCharCode(currentColumn.charCodeAt(0) + 1);
