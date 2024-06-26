@@ -2,7 +2,7 @@ import React, { useState, useEffect, SetStateAction } from "react";
 import { ApiData, URL } from "../utils/constants/contants";
 import Loader from '../assets/loader.gif'
 import AI from '../assets/aiRWS.png'
-import del from '../assets/del.png'
+import del from '../assets/close.png'
 import '../index.css'
 const ModalAI: React.FC<{ data: any , close:SetStateAction<any>}> = ({ data, close }) => {
     const [loading, setLoading] = useState(false);
