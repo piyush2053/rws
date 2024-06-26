@@ -4,6 +4,7 @@ const cors = require('cors');
 const ExcelJS = require('exceljs');
 const path = require('path');
 const fs = require('fs');
+const { MakingSchedule } = require('./Utils/Scheduler.ts');
 
 const app = express();
 
@@ -42,20 +43,12 @@ app.post("/estimate", async (req, res) => {
 
         const sheet3 = workbook.getWorksheet('Assumption & Queries');
         sheet3.getCell("D2").value = projectName
-
-        for (let i = 0; i < assumptions.length; i++) {
-            sheet3.getCell(`C${4 + i}`).value = assumptions[i];
-        }
-        for (let i = 0; i < queries.length; i++) {
-            sheet3.getCell(`F${4 + i}`).value = queries[i];
-        }
-        const sheet4 = workbook.getWorksheet('AI Input');
-        sheet4.getCell('A2').value = JSON.stringify(ai_input).replace(/\*/g, '').replace(/\#/g, '').replace(/\\n/g, '').replace('{"response":"','');
-
+        MakingSchedule(assumptions, sheet3, sheet2, workbook, effortDays, numberOfResource, numberOfTester, numberOfProjectManager, queries, ai_input);
+        
         const outputFile = path.join(__dirname, `output_${Date.now()}.xlsx`);
 
         await workbook.xlsx.writeFile(outputFile);
-
+        fs.chmodSync(outputFile, 0o666); //have done this to allow the file to be downloaded
         const fileContents = fs.readFileSync(outputFile);
         res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         res.setHeader('Content-Disposition', 'attachment; filename="estimate.xlsx"');
