@@ -16,7 +16,6 @@ const MakingSchedule = (assumptions, sheet3, sheet2, workbook, effortDays, numbe
     let currentRow = 7;
     let currentColumn = 'G';
     for (let i = 0; i < effortsTemp; i++) {
-        console.log(effortsTemp, 'effortsTemp')
         sheet2.getCell(`${currentColumn}${currentRow}`).value = dailyHoursPerResource * numberOfResource;
         currentColumn = String.fromCharCode(currentColumn.charCodeAt(0) + 1);
         if (currentColumn > 'Z') {

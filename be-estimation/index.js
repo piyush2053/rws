@@ -29,10 +29,9 @@ app.post("/estimate", async (req, res) => {
 
         const sheet1 = workbook.getWorksheet('WBS');
         sheet1.getCell('E8').value = Number(effortDays);
-        sheet1.getCell('E10').value = Number(0);
-        sheet1.getCell('E11').value = Number(0);
-        sheet1.getCell('E12').value = Number(0);
-        sheet1.getCell('E13').value = Number(0);
+        for(let i = 0; i < 4; i++) {
+            sheet1.getCell(`E1${i}`).value = Number(0);    
+        }
         sheet1.getCell('D2').value = projectName;
 
         const sheet2 = workbook.getWorksheet('Schedule');
@@ -46,9 +45,7 @@ app.post("/estimate", async (req, res) => {
         MakingSchedule(assumptions, sheet3, sheet2, workbook, effortDays, numberOfResource, numberOfTester, numberOfProjectManager, queries, ai_input);
         
         const outputFile = path.join(__dirname, `output_${Date.now()}.xlsx`);
-
         await workbook.xlsx.writeFile(outputFile);
-        fs.chmodSync(outputFile, 0o666); //have done this to allow the file to be downloaded
         const fileContents = fs.readFileSync(outputFile);
         res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         res.setHeader('Content-Disposition', 'attachment; filename="estimate.xlsx"');
