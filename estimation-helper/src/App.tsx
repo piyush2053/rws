@@ -116,7 +116,7 @@ const Form = () => {
           </button>
         </div>
       </form>
-      {ModalShow && <ModelAI data={formData}></ModelAI>}
+      {ModalShow && <ModelAI data={formData} close={setModalShow}></ModelAI>}
     </div>
   );
 };
