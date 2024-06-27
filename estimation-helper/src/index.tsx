@@ -10,6 +10,7 @@ import DrawerComp from './Components/Drawer';
 import { DrawerProvider, TabProvider } from './Components/Store/Provider';
 import BannerSecond from './Components/SmallChunks/SecondBanner';
 import ErrorPage from './Pages/Error';
+import GenAI from './Pages/GenerativeAI';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -30,7 +31,7 @@ root.render(
           <Route
             element={
             <>
-              <BannerTop />
+              <GenAI />
             </>
           } path='/gen-ai'></Route>
           <Route

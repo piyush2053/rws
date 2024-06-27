@@ -4,15 +4,14 @@ import Loader from '../assets/loader.gif'
 import AI from '../assets/aiRWS.png'
 import del from '../assets/close.png'
 import '../index.css'
+import { getCurrentEnv } from "../utils/funtions/funtion";
 const ModalAI: React.FC<{ data: any , close:SetStateAction<any>}> = ({ data, close }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [error1, setError1] = useState(false);
     const [apiData, setApiData] = useState<ApiData | null>(null);
 
-    const API_ENDPOINT = window.location.hostname === 'localhost'
-        ? URL.GENAI_LOCAL
-        : URL.GENAI_PROD
+    const API_ENDPOINT = getCurrentEnv() ? URL.GENAI_LOCAL : URL.GENAI_PROD
 
     useEffect(() => {
         fetch(`${API_ENDPOINT}/askai?query="${JSON.stringify(data)} Here calculate the Scehdule of this project from efforts days of this project, consider efforts days are full to be utilized by each resource 100% so calculate the Person days, Assume that we have task like this Task 1: Requirements Gathering (3 days) Task 2: Design Task 3: Development Task 4: Testing Task 5: Deployment Divide accordingly"`)
@@ -32,9 +31,7 @@ const ModalAI: React.FC<{ data: any , close:SetStateAction<any>}> = ({ data, clo
         setError(false)
         e.preventDefault();
         try {
-            const apiUrl = window.location.hostname === 'localhost'
-                ? URL.LOCAL
-                : URL.PROD
+            const apiUrl = getCurrentEnv() ? URL.LOCAL : URL.PROD
             const postData = { ...data, ai_input: apiData };
             const response = await fetch(apiUrl, {
                 method: 'POST',
@@ -68,8 +65,8 @@ const ModalAI: React.FC<{ data: any , close:SetStateAction<any>}> = ({ data, clo
     }
 
     return (
-        <div className={`fixed inset-0 z-50 flex items-center justify-center backdrop-filter backdrop-blur-sm animate-fade`} >
-            <div className="bg-white rounded-lg p-8 w-full max-w-lg mx-4 shadow-2xl" style={{ border: '5px solid linear-gradient(to bottom right, #007373, #00bf63)' }}>
+        <div className={`w-full fixed inset-0 z-50 flex items-center justify-center backdrop-filter backdrop-blur-sm animate-fade px-10`} >
+            <div className="bg-white rounded-lg p-8 w-full max-w-lg mx-4 shadow-2xl" >
                 <div className="mb-6 bg-red p-1">
                     {apiData ? (
                         <>
@@ -100,7 +97,7 @@ const ModalAI: React.FC<{ data: any , close:SetStateAction<any>}> = ({ data, clo
                                 <button
                                     onClick={handleGenerate}
                                     disabled={loading}
-                                    className={`bg-[#007373] text-white text-[10px] py-2 px-4 rounded-lg hover:bg-[#009688] focus:outline-none focus:bg-[#009688] justify-center mr-2`}>
+                                    className="inline-flex hover:bg-white hover:text-[#0E6ED6] h-7 items-center justify-center rounded-md bg-[#0E6ED6] px-4 text-xs font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
                                     Generate Excel
                                 </button>
                             </div>

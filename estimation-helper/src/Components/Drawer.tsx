@@ -35,7 +35,7 @@ const DrawerComp = () => {
                                 </form>
                                 <Sidebar.Items>
                                     <Sidebar.ItemGroup>
-                                        <Sidebar.Item href="/gen-Aai" icon={() => <><img src={ai} className="h-5 rounded-lg"/></>}>
+                                        <Sidebar.Item href="/gen-ai" icon={() => <><img src={ai} className="h-5 rounded-lg"/></>}>
                                             Generative AI
                                         </Sidebar.Item>
                                         <Sidebar.Item href="/estimation" icon={() => <><img src={excel} className="h-5"/></>}>
