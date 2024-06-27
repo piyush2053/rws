@@ -24,7 +24,8 @@ const ModalAI: React.FC<{ data: any , close:SetStateAction<any>}> = ({ data, clo
                 console.error('Error fetching data:', error);
                 setError1(true);
             });
-    }, []);
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [data]);
 
     const handleGenerate = async (e:any) => {
         setLoading(true)
@@ -79,7 +80,7 @@ const ModalAI: React.FC<{ data: any , close:SetStateAction<any>}> = ({ data, clo
                             <ul className="custom-scrollbar p-2 bg-[#ECEFF1] rounded-lg">
                                 {Object.entries(apiData).map(([key, value]) => (
                                     <li key={key} className="text-[12px]">
-                                        <div dangerouslySetInnerHTML={{ __html: value.replace(/\*/g, '').replace(/\#/g, '').replace(/\n/g, '<br/>') }} />
+                                        <div dangerouslySetInnerHTML={{ __html: value.replace(/\*/g, '').replace(/#/g, '').replace(/\n/g, '<br/>') }} />
                                     </li>
                                 ))}
 

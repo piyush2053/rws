@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import rwsLogo from './assets/rwsbanner2.png'
 import add from './assets/add.png'
 import del from './assets/del.png'
-import excel from './assets/excel.png'
 import pp from './assets/ppIntials.png'
 
-import { URL, initialFormData } from './utils/constants/contants';
+import {  initialFormData } from './utils/constants/contants';
 import ModelAI from './Model/AI_response';
 const Form = () => {
 
