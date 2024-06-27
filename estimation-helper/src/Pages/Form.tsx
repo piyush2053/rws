@@ -41,7 +41,7 @@ const Form = () => {
   };
 
   return (
-    <div className="animate-fade max-w-md mx-auto my-10 bg-white p-8 rounded-md shadow-md justify-center">
+    <div className="animate-fade bg-white max-w-md mx-auto my-10 p-8 rounded-md shadow-md justify-center">
       <img alt='logo' src={flip ? pp : rwsLogo} className='animate-fade mb-5 rounded-lg relative cursor-pointer' onClick={() => setFlip(!flip)} ></img>
       <form onSubmit={handleSubmit} >
         <div className='flex gap-5'>

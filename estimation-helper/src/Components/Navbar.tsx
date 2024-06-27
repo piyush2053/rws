@@ -8,7 +8,7 @@ import PopoverMe from "./SmallChunks/PiyushPopover";
 const NavbarTop = () => {
     const {open, setOpen} = useDrawer()
     return (
-        <Navbar fluid rounded color="light" className="mt-3" >
+        <Navbar fluid rounded color="light" className="py-5" >
             <Navbar.Brand  >
                 <img src={logo} className="mr-3 h-4 lg:h-5" alt="RWS" />
                 <Tooltip content="Open the Menu Options">
@@ -19,7 +19,7 @@ const NavbarTop = () => {
             </Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse>
-            <a href="/home" className="inline-flex border-2 border-[#0E6ED6] font-bold h-8 items-center justify-center rounded-md text-[#0E6ED6] px-5 text-sm shadow transition-colors hover:bg-[#0E6ED6] hover:text-white ">
+            <a href="/" className="inline-flex border-2 border-[#0E6ED6] font-bold h-8 items-center justify-center rounded-md text-[#0E6ED6] px-5 text-sm shadow transition-colors hover:bg-[#0E6ED6] hover:text-white ">
                     Home
                 </a>
                 <PopoverMe/>

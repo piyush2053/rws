@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Drawer, Sidebar, TextInput } from "flowbite-react";
+import { Button, Drawer, Sidebar, SidebarLogo, TextInput } from "flowbite-react";
 import {
     HiChartPie,
     HiClipboard,
@@ -11,18 +11,18 @@ import {
     HiShoppingBag,
     HiUsers,
 } from "react-icons/hi";
+import logo from '../assets/svg/rws-logo_no--whitespace_tcm228-236815.svg'
+import excel from '../assets/excel.png'
+import ai from '../assets/aiRWS.png'
+import '../index.css'
 import { useDrawer } from "./Store/Provider";
 const DrawerComp = () => {
-
     const { open, setOpen } = useDrawer();
-    // const [activeTab, setActiveTab] = useTabs();
-
     const handleClose = () => setOpen(false);
-
     return (
         <>
-            <Drawer open={open} onClose={handleClose}>
-                <Drawer.Header title="MENU" titleIcon={() => <></>} />
+            <Drawer open={open} onClose={handleClose} >
+                <Drawer.Header title="RWS" titleIcon={() => <><img src={logo}/></>} />
                 <Drawer.Items>
                     <Sidebar
                         aria-label="Sidebar with multi-level dropdown example"
@@ -35,31 +35,11 @@ const DrawerComp = () => {
                                 </form>
                                 <Sidebar.Items>
                                     <Sidebar.ItemGroup>
-                                        <Sidebar.Item href="/" icon={HiChartPie}>
-                                            Dashboard
+                                        <Sidebar.Item href="/gen-Aai" icon={() => <><img src={ai} className="h-5 rounded-lg"/></>}>
+                                            Generative AI
                                         </Sidebar.Item>
-                                        <Sidebar.Item href="/e-commerce/products" icon={HiShoppingBag}>
-                                            Products
-                                        </Sidebar.Item>
-                                        <Sidebar.Item href="/users/list" icon={HiUsers}>
-                                            Users list
-                                        </Sidebar.Item>
-                                        <Sidebar.Item href="/authentication/sign-in" icon={HiLogin}>
-                                            Sign in
-                                        </Sidebar.Item>
-                                        <Sidebar.Item href="/authentication/sign-up" icon={HiPencil}>
-                                            Sign up
-                                        </Sidebar.Item>
-                                    </Sidebar.ItemGroup>
-                                    <Sidebar.ItemGroup>
-                                        <Sidebar.Item href="https://github.com/themesberg/flowbite-react/" icon={HiClipboard}>
-                                            Docs
-                                        </Sidebar.Item>
-                                        <Sidebar.Item href="https://flowbite-react.com/" icon={HiCollection}>
-                                            Components
-                                        </Sidebar.Item>
-                                        <Sidebar.Item href="https://github.com/themesberg/flowbite-react/issues" icon={HiInformationCircle}>
-                                            Help
+                                        <Sidebar.Item href="/estimation" icon={() => <><img src={excel} className="h-5"/></>}>
+                                            Estimate Efforts
                                         </Sidebar.Item>
                                     </Sidebar.ItemGroup>
                                 </Sidebar.Items>

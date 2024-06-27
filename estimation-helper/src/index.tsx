@@ -8,6 +8,8 @@ import NavbarTop from './Components/Navbar';
 import BannerTop from './Components/SmallChunks/AI_Banner';
 import DrawerComp from './Components/Drawer';
 import { DrawerProvider, TabProvider } from './Components/Store/Provider';
+import BannerSecond from './Components/SmallChunks/SecondBanner';
+import ErrorPage from './Pages/Error';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,14 +19,27 @@ root.render(
     <DrawerProvider>
       <BrowserRouter>
         <NavbarTop />
+        <DrawerComp />
         <Routes>
           <Route element={<Form />} path='/pp'></Route>
           <Route
             element={<>
               <BannerTop />
-              <DrawerComp />
-            </>} path='/home'></Route>
-          <Route element={<>Error</>} path='/*'></Route>
+              <BannerSecond/>
+            </>} path='/'></Route>
+          <Route
+            element={
+            <>
+              <BannerTop />
+            </>
+          } path='/gen-ai'></Route>
+          <Route
+            element={
+            <>
+              <Form/>
+            </>
+          } path='/estimation'></Route>
+          <Route element={<ErrorPage/>} path='/*'></Route>
         </Routes>
       </BrowserRouter>
     </DrawerProvider>
