@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import rwsLogo from './assets/rwsbanner2.png'
-import add from './assets/add.png'
-import del from './assets/del.png'
-import pp from './assets/ppIntials.png'
+import rwsLogo from '../assets/rwsbanner2.png'
+import add from '../assets/add.png'
+import del from '../assets/del.png'
+import pp from '../assets/ppIntials.png'
 
-import {  initialFormData } from './utils/constants/contants';
-import ModelAI from './Model/AI_response';
+import {  initialFormData } from '../utils/constants/contants';
+import ModelAI from '../Model/AI_response';
 const Form = () => {
 
   const [ModalShow, setModalShow] = useState<any>(false);
