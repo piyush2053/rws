@@ -1,62 +1,104 @@
-import React from "react";
+import { useState } from 'react';
+import Loader from '../assets/loader.gif'
+import { URL } from '../utils/constants/contants'
 import { SearchIcon, SendIcon, SettingsIcon } from "../Components/SmallChunks/svgs";
 import { Button, Textarea } from "flowbite-react";
+import { getCurrentEnv } from '../utils/funtions/funtion';
 
-const GenAI = ()=>{
-return(
-    <div className="flex flex-col h-screen">
-      <header className="bg-primary text-primary-foreground py-4 px-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div>
-            <div className="font-medium">ChatGPT</div>
-            <div className="text-sm text-primary-foreground/80">Online</div>
-          </div>
-        </div>
-        <div className="flex items-center gap-4">
-          <Button >
-            <SearchIcon className="w-5 h-5" />
-          </Button>
-          <Button >
-            <SettingsIcon className="w-5 h-5" />
-          </Button>
-        </div>
-      </header>
-      <div className="flex-1 overflow-auto p-6 space-y-4">
-        <div className="flex items-start gap-4">
-          <div className="bg-muted rounded-lg p-4 max-w-[80%]">
-            <p>Hi there! Can you explain airplane turbulence to me?</p>
-            <div className="text-xs text-muted-foreground mt-2">2:39 PM</div>
+const GenAI = () => {
+  const [question, setQuestion] = useState("")
+  const [ResponseAI, setResponseAI] = useState("")
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+  const HandleAsk = () => {
+    setLoading(true)
+    try {
+      const API_ENDPOINT = getCurrentEnv() ? URL.GENAI_LOCAL : URL.GENAI_PROD
+      fetch(`${API_ENDPOINT}/askai?query="${question}"`)
+        .then(response => response.json())
+        .then(data => {
+          setResponseAI(data);
+          setLoading(false)
+          setError(``)
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+          setError(`${error}`);
+          setLoading(false)
+        });
+
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
+      setError(`${error}`)
+    }
+  }
+
+  const HandleChange = (e: any) => {
+    e.preventDefault()
+    setQuestion(e.target.value)
+  }
+
+  const HandleKeyPress = (e: any) => {
+    if (e.key === 'Enter') {
+      HandleAsk();
+    }
+  };
+  return (
+    <div className="flex flex-col bg-white m-2 rounded-lg shadow-xl">
+      <div className="flex-1 overflow-auto p-6 space-y-4 rounded-lg">
+        <div className="flex items-start gap-2">
+          <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg p-3 max-w-[80%] text-white font-thin text-sm">
+            <p>Hi there! How can i help you today ?</p>
+            <div className="text-[10px] text-white mt-1 font-thin">{new Date().toLocaleTimeString()}</div>
           </div>
         </div>
         <div className="flex items-start gap-4 justify-end">
-          <div className="bg-primary rounded-lg p-4 max-w-[80%] text-primary-foreground">
-            <p>
-              Of course! Airplane turbulence happens when the plane encounters pockets of air that are moving
-              differently. It's like sailing a boat on choppy water. These air pockets can make the plane feel like it's
-              bouncing or shaking a bit. It's completely normal and usually not dangerous at all.
-            </p>
-            <div className="text-xs text-primary-foreground/80 mt-2">2:40 PM</div>
-          </div>
+          {question !== '' && ResponseAI &&
+            <div className="bg-[#007373] rounded-lg p-4 max-w-[80%] text-white text-sm">
+              <p>
+                {question}
+              </p>
+              <div className="text-xs text-primary-foreground/80 mt-2">{new Date().toLocaleTimeString()}</div>
+            </div>
+          }
         </div>
         <div className="flex items-start gap-4">
-          <div className="bg-muted rounded-lg p-4 max-w-[80%]">
-            <p>That makes sense, thank you!</p>
-            <div className="text-xs text-muted-foreground mt-2">2:41 PM</div>
-          </div>
+          {error !== "" ?
+            <div className="bg-red-500 rounded-lg p-4 max-w-[80%] text-white">
+              <div>Sorry Cant hear you !</div>
+              <details className='cursor-pointer'>
+                <summary>Advanced Details</summary>
+                {error}
+              </details>
+            </div> : <>{ResponseAI &&
+              <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-lg p-4 max-w-[80%]">
+                {Object.entries(ResponseAI).map(([key, value]) => (
+                  <div dangerouslySetInnerHTML={{ __html: value.replace(/\*/g, '').replace(/#/g, '').replace(/\n/g, '<br/>') }}></div>
+                ))}
+                <div className="text-xs text-muted-foreground mt-2">{new Date().toLocaleTimeString()}</div>
+              </div>}</>}
         </div>
       </div>
       <div className="bg-muted/50 px-6 py-4 flex items-center gap-4">
-        <Textarea
-          placeholder="Type your message..."
-          className="flex-1 rounded-lg bg-background border border-input px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary"
-        />
-        <Button>
-          <SendIcon className="w-5 h-5" />
-          <span className="sr-only">Send</span>
-        </Button>
+        {loading ?
+          <img src={Loader} className='h-8 px-auto mx-auto align-end' /> :
+          <>
+            <input
+              value={question}
+              type="text"
+              onKeyPress={HandleKeyPress}
+              onChange={HandleChange}
+              placeholder="Ask something..."
+              className="flex-1 text-[#616161] rounded-lg bg-[#ECEFF1] px-4 py-3 focus:outline-none focus:ring-0 focus:ring-0 text-sm border-0 font-thin"
+            />
+            <div onClick={HandleAsk} className='bg-[#0E6ED6] hover:bg-white hover:text-[#0E6ED6] p-2 px-3 rounded-lg text-white border-2 border-[#0E6ED6] cursor-pointer'>
+              <SendIcon className="w-5 h-5" />
+            </div>
+          </>}
       </div>
     </div>
-)
+  )
 }
 
 export default GenAI

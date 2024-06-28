@@ -41,8 +41,8 @@ const Form = () => {
 
   return (
     <section className="bg-white w-[99%] p-10 my-2 mx-2 rounded-lg animate-fade">
-      <div className="flex justify-start">
-        <img alt='ait' src={rwsLogo} className='h-[430px] rounded-lg mr-4 animate-fade'></img>
+      <div className="flex flex-col lg:flex-row">
+        <img alt='ait' src={rwsLogo} className='rounded-lg mr-4 mb-4 animate-fade'></img>
           <form onSubmit={handleSubmit} >
             <div className='flex gap-5'>
               <div>

@@ -25,14 +25,14 @@ const BannerTop = () => {
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                     <a
                     href="/gen-ai"
-                        className="inline-flex h-10 items-center justify-center rounded-md bg-[#0E6ED6] px-8 text-md font-medium text-white shadow transition-colors hover:bg-primary/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                        className="inline-flex h-10 items-center justify-center rounded-md bg-[#0E6ED6] px-8 text-md font-bold text-white shadow transition-colors hover:bg-primary/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                         
                     >
                         Get Started
                     </a>
                     <a
                         href="/"
-                        className="inline-flex h-10 items-center justify-center rounded-md border border-primary-foreground bg-primary px-8 text-sm font-medium text-white shadow-sm transition-colors hover:bg-primary-foreground/90 hover:text-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                        className="inline-flex h-10 items-center justify-center rounded-md border border-primary-foreground bg-white px-8 text-sm font-bold text-[#0E6ED6] shadow-sm transition-colors hover:bg-primary-foreground/90 hover:text-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                         
                     >
                         Learn More

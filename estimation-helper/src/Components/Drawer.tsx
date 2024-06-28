@@ -11,7 +11,7 @@ import {
     HiShoppingBag,
     HiUsers,
 } from "react-icons/hi";
-import logo from '../assets/svg/rws-logo_no--whitespace_tcm228-236815.svg'
+import logo from '../assets/rwsLogoonly.png'
 import excel from '../assets/excel.png'
 import ai from '../assets/aiRWS.png'
 import '../index.css'
@@ -21,8 +21,8 @@ const DrawerComp = () => {
     const handleClose = () => setOpen(false);
     return (
         <>
-            <Drawer open={open} onClose={handleClose} >
-                <Drawer.Header title="RWS" titleIcon={() => <><img src={logo}/></>} />
+            <Drawer open={open} onClose={handleClose} className="w-25" >
+                <Drawer.Header title="RWS" titleIcon={() => <><img src={logo} className="h-7 mr-2"/></>} />
                 <Drawer.Items>
                     <Sidebar
                         aria-label="Sidebar with multi-level dropdown example"
