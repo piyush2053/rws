@@ -7,10 +7,13 @@ import { getCurrentEnv } from '../utils/funtions/funtion';
 
 const GenAI = () => {
   const [question, setQuestion] = useState("")
+  const [Searched, setSearched] = useState("")
   const [ResponseAI, setResponseAI] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
-  const HandleAsk = () => {
+  const HandleAsk = (e:any) => {
+    e.preventDefault();
+    setSearched(question)
     setLoading(true)
     try {
       const API_ENDPOINT = getCurrentEnv() ? URL.GENAI_LOCAL : URL.GENAI_PROD
@@ -19,11 +22,13 @@ const GenAI = () => {
         .then(data => {
           setResponseAI(data);
           setLoading(false)
+          setQuestion('')
           setError(``)
         })
         .catch(error => {
           console.error('Error fetching data:', error);
           setError(`${error}`);
+          setQuestion('')
           setLoading(false)
         });
 
@@ -41,12 +46,12 @@ const GenAI = () => {
 
   const HandleKeyPress = (e: any) => {
     if (e.key === 'Enter') {
-      HandleAsk();
+      HandleAsk(e);
     }
   };
   return (
     <div className="flex flex-col bg-white m-2 rounded-lg shadow-xl">
-      <div className="flex-1 overflow-auto p-6 space-y-4 rounded-lg">
+      <div className="flex-1 overflow-auto p-6 space-y-4 rounded-lg" style={{maxHeight:"530px", overflowY:'auto'}}>
         <div className="flex items-start gap-2">
           <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg p-3 max-w-[80%] text-white font-thin text-sm">
             <p>Hi there! How can i help you today ?</p>
@@ -54,10 +59,10 @@ const GenAI = () => {
           </div>
         </div>
         <div className="flex items-start gap-4 justify-end">
-          {question !== '' && ResponseAI &&
+          {Searched &&
             <div className="bg-[#007373] rounded-lg p-4 max-w-[80%] text-white text-sm">
               <p>
-                {question}
+                {Searched}
               </p>
               <div className="text-xs text-primary-foreground/80 mt-2">{new Date().toLocaleTimeString()}</div>
             </div>

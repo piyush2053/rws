@@ -11,12 +11,11 @@ const NavbarTop = () => {
         <Navbar fluid rounded color="light" className="py-5" >
             <Navbar.Brand  >
                 <img src={logo} className="mr-3 h-4 lg:h-5" alt="RWS" />
-                <Tooltip content="Open the Menu Options" placement="right-end">
-                {/* //z-50 ml-[-100px] */}
-                    <a onClick={() => setOpen(true)} className="top-5 bg-[#007373] inline-flex font-bold h-8 items-center justify-center rounded-md text-[#007373] px-2 text-sm shadow transition-colors cursor-pointer hover:bg-[#007373] hover:text-white hover:border-0 "> 
-                        <HiMenu  color="white"/>
-                    </a>
-                </Tooltip>
+                {!open && <div onClick={() => setOpen(true)} className="z-50 ml-[-80px] mb-[-60px] bg-[#ECEFF1] inline-flex font-bold h-8 items-center justify-center rounded-md  px-2 text-sm shadow-md border-2 border-[#CFD8DC] cursor-pointer hover:bg-white "> 
+                        <Tooltip placement="right-end" content="Open Sidebar">
+                        <HiMenu  color="#007373"/>
+                        </Tooltip>
+                    </div>}
             </Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse>
