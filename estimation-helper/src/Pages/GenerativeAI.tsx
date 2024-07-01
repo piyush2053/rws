@@ -81,9 +81,7 @@ export default function GenAI() {
           {loading ?
             <div className="flex items-start gap-3">
               <img src={Loader} className='h-5' />
-              <div className="bg-muted rounded-lg p-4 max-w-[75%]">
-                <p className='px-40 bg-[#90A4AE] animate-pulse rounded-lg'>
-                </p>
+              <div className="bg-[#B2DFDB] animate-pulse rounded-full py-4 w-[40%] shadow-xl ">
               </div>
             </div>
             :
