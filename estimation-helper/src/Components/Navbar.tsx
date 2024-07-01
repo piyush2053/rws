@@ -11,18 +11,20 @@ const NavbarTop = () => {
         <Navbar fluid rounded color="light" className="py-5" >
             <Navbar.Brand  >
                 <img src={logo} className="mr-3 h-4 lg:h-5" alt="RWS" />
-                {!open && <div onClick={() => setOpen(true)} className="z-50 ml-[-80px] mb-[-60px] bg-[#ECEFF1] inline-flex font-bold h-8 items-center justify-center rounded-md  px-2 text-sm shadow-md border-2 border-[#CFD8DC] cursor-pointer hover:bg-white "> 
-                        <Tooltip placement="right-end" content="Open Sidebar">
-                        <HiMenu  color="#007373"/>
-                        </Tooltip>
-                    </div>}
             </Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse>
-                <a href="/" className="inline-flex border-2 border-[#0E6ED6] font-bold h-8 items-center justify-center rounded-md text-[#0E6ED6] px-5 text-sm shadow transition-colors hover:bg-[#0E6ED6] hover:text-white ">
-                    Home
-                </a>
-                <PopoverMe />
+                <div className="flex gap-2">
+                    {!open && <div onClick={() => setOpen(true)} className="bg-white inline-flex font-bold h-8 items-center justify-center rounded-md  px-2 text-sm shadow-md border-2 border-[#CFD8DC] cursor-pointer hover:bg-white ">
+                        <Tooltip placement="right-end" content="Menu Options">
+                            <HiMenu color="#007373" />
+                        </Tooltip>
+                    </div>}
+                    <PopoverMe />
+                    <a href="/" className="inline-flex border-2 border-[#BDBDBD] font-bold h-8 items-center justify-center rounded-md text-[#0E6ED6] px-5 text-sm shadow-xl transition-colors hover:bg-[#0E6ED6] hover:text-white ">
+                        Home
+                    </a>
+                </div>
             </Navbar.Collapse>
         </Navbar>
     )

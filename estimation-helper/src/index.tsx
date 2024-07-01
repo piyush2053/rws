@@ -4,13 +4,14 @@ import './index.css';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import Form from './Pages/Form';
-import NavbarTop from './Components/Navbar';
 import BannerTop from './Components/SmallChunks/AI_Banner';
 import DrawerComp from './Components/Drawer';
 import { DrawerProvider, TabProvider } from './Components/Store/Provider';
 import BannerSecond from './Components/SmallChunks/SecondBanner';
-import ErrorPage from './Pages/Error';
 import GenAI from './Pages/GenerativeAI';
+import ErrorPage from './Pages/Error';
+import OurTeam from './Pages/OurTeam';
+import NavbarTop from './Components/Navbar';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -34,6 +35,12 @@ root.render(
               <GenAI />
             </>
           } path='/gen-ai'></Route>
+          <Route
+            element={
+            <>
+              <OurTeam />
+            </>
+          } path='/team-indore'></Route>
           <Route
             element={
             <>

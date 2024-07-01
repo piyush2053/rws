@@ -1,6 +1,6 @@
 import { Popover } from "flowbite-react";
 import ME from '../../assets/ss/ME.png'
-
+import { FaRegUser } from "react-icons/fa";
 const PopoverMe = () => {
     return (
         <Popover
@@ -51,8 +51,8 @@ const PopoverMe = () => {
                 </div>
             }
         >
-            <a className="inline-flex cursor-pointer font-bold h-8 items-center justify-center rounded-md bg-[#0E6ED6] px-5 text-sm text-white shadow transition-colors hover:bg-primary/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
-                Contact
+            <a className="inline-flex cursor-pointer font-bold h-8 items-center justify-center rounded-full bg-[#0E6ED6] px-2.5 text-sm text-white shadow transition-colors hover:bg-primary/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+                <FaRegUser/>
             </a>
         </Popover>
     )

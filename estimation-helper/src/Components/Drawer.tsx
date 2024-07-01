@@ -41,6 +41,9 @@ const DrawerComp = () => {
                                         <Sidebar.Item href="/estimation" icon={() => <><img src={excel} className="h-5"/></>}>
                                             Estimate Efforts
                                         </Sidebar.Item>
+                                        <Sidebar.Item href="/team-indore" icon={() => <><img src={logo} className="h-5"/></>}>
+                                            Our Team
+                                        </Sidebar.Item>
                                     </Sidebar.ItemGroup>
                                 </Sidebar.Items>
                             </div>

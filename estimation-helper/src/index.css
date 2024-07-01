@@ -35,19 +35,22 @@ code {
 
 /* Custom scrollbar styling */
 body::-webkit-scrollbar {
-  width: 8px; /* Width of the scrollbar */
+  width: 5px;
 }
 
 body::-webkit-scrollbar-thumb {
   background-color: rgba(160, 160, 160, 0.5); /* Color of the scrollbar thumb */
-  border-radius: 10px; /* Rounded corners of the scrollbar thumb */
+  border-radius: 50px; /* Rounded corners of the scrollbar thumb */
 }
 
 body::-webkit-scrollbar-track {
   background: transparent; /* Background color of the scrollbar track */
-  border-radius: 10px; /* Rounded corners of the scrollbar track */
+  border-radius: 50px; /* Rounded corners of the scrollbar track */
 }
 
+.imagesTeam{
+  border: 2px solid #007373
+}
 
 .custom-scrollbar {
   max-height: 400px;
