@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import Loader from '../assets/loader.gif'
 import { URL } from '../utils/constants/contants'
-import { Button, Textarea } from "flowbite-react";
+import { Button } from "flowbite-react";
 import { getCurrentEnv } from '../utils/funtions/funtion';
 import { FaRegUser } from "react-icons/fa";
+import { BiSend } from "react-icons/bi";
 
 export default function GenAI() {
   const [question, setQuestion] = useState("")
@@ -54,7 +55,7 @@ export default function GenAI() {
     <div className="flex flex-col mx-20 bg-white my-5 rounded-2xl shadow-xl max-h-[600px] ">
       <header className="flex items-center justify-between px-6 py-4 border-b">
         <div className="flex items-center gap-2">
-          <BotIcon className="w-6 h-6 text-primary text-[#0E6ED6]" />
+          <BotIcon className="w-6 h-6 text-primary text-[#0E6ED6] shadow-lg rounded-lg" />
           <h1 className="text-lg font-medium">Assistant</h1>
         </div>
       </header>
@@ -105,10 +106,9 @@ export default function GenAI() {
           <input value={question}
             onKeyPress={HandleKeyPress}
             onChange={HandleChange}
-            placeholder="Ask something..." className="flex-1 border-none focus:ring-0 focus:outline-none text-[#616161] text-sm" autoComplete="off" />
-          <Button onClick={HandleAsk} size="icon">
-            <SendIcon className="w-5 h-5" />
-            <span className="sr-only">Send</span>
+            placeholder="Ask something..." className="tracking-wider flex-1 border-none focus:ring-0 focus:outline-none text-[#616161] text-sm" autoComplete="off" />
+          <Button onClick={HandleAsk} size="icon" className='p-1 bg-[#0E6ED6] px-2'>
+            <BiSend className='h-5'/>
           </Button>
         </form>
       </div>
