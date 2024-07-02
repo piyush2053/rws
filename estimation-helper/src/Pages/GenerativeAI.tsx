@@ -19,7 +19,7 @@ export default function GenAI() {
     setLoading(true)
     try {
       const API_ENDPOINT = getCurrentEnv() ? URL.GENAI_LOCAL : URL.GENAI_PROD_vercel
-      fetch(`${API_ENDPOINT}/?query="${question}" and if someone ask code in this query so give the resposne that "Piyush has not taught me coding, Sorry cant help you."`)
+      fetch(`${API_ENDPOINT}/?query="${question}" and if someone ask code in this query so give the resposne that "Piyush has not taught me coding, Sorry cant help you. and also dont give this note Note: If you ask for code, I will respond with "Piyush has not taught me coding, Sorry I can't help you." "`)
         .then(response => response.json())
         .then(data => {
           setResponseAI(data);
