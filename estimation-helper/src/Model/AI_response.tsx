@@ -11,10 +11,10 @@ const ModalAI: React.FC<{ data: any , close:SetStateAction<any>}> = ({ data, clo
     const [error1, setError1] = useState(false);
     const [apiData, setApiData] = useState<ApiData | null>(null);
 
-    const API_ENDPOINT = getCurrentEnv() ? URL.GENAI_LOCAL : URL.GENAI_PROD
+    const API_ENDPOINT = getCurrentEnv() ? URL.GENAI_LOCAL : URL.GENAI_PROD_vercel
 
     useEffect(() => {
-        fetch(`${API_ENDPOINT}/askai?query="${JSON.stringify(data)} Here calculate the Scehdule of this project from efforts days of this project, consider efforts days are full to be utilized by each resource 100% so calculate the Person days, Assume that we have task like this Task 1: Requirements Gathering (3 days) Task 2: Design Task 3: Development Task 4: Testing Task 5: Deployment Divide accordingly"`)
+        fetch(`${API_ENDPOINT}/?query="${JSON.stringify(data)} Here calculate the Scehdule of this project from efforts days of this project, consider efforts days are full to be utilized by each resource 100% so calculate the Person days, Assume that we have task like this Task 1: Requirements Gathering (3 days) Task 2: Design Task 3: Development Task 4: Testing Task 5: Deployment Divide accordingly"`)
             .then(response => response.json())
             .then(data => {
                 setApiData(data);

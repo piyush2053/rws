@@ -18,8 +18,8 @@ export default function GenAI() {
     setQuestion('')
     setLoading(true)
     try {
-      const API_ENDPOINT = getCurrentEnv() ? URL.GENAI_LOCAL : URL.GENAI_PROD
-      fetch(`${API_ENDPOINT}/askai?query="${question}"`)
+      const API_ENDPOINT = getCurrentEnv() ? URL.GENAI_LOCAL : URL.GENAI_PROD_vercel
+      fetch(`${API_ENDPOINT}/?query="${question}"`)
         .then(response => response.json())
         .then(data => {
           setResponseAI(data);
