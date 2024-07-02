@@ -12,6 +12,7 @@ const NavbarTop = () => {
         <Navbar fluid rounded color="light" className="py-5" >
             <Navbar.Brand  >
                 <img src={logo} className="mr-3 h-4 lg:h-5" alt="RWS" />
+                <p className="px-2 py-1 text-white text-xs rounded-full tracking-wide bg-[#007373] shadow-xl" >Omega</p>
             </Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse>
