@@ -6,7 +6,7 @@ import Clients from '../Components/SmallChunks/Client'
 export default function OurTeam() {
     return (
         <>
-        <div className="max-w-5xl mx-auto pt-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto pt-12 px-4 sm:px-6 lg:px-8 animate-fade">
             {Data.slice(0, 1).map((data, index) => {
                 return (
                     <div className='flex'>
