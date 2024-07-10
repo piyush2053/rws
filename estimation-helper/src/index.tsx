@@ -12,6 +12,7 @@ import GenAI from './Pages/GenerativeAI';
 import ErrorPage from './Pages/Error';
 import OurTeam from './Pages/OurTeam';
 import NavbarTop from './Components/Navbar';
+import TimeSheet from './Pages/Timesheet';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -47,6 +48,12 @@ root.render(
               <Form/>
             </>
           } path='/estimation'></Route>
+          <Route
+            element={
+            <>
+              <TimeSheet/>
+            </>
+          } path='/timesheet'></Route>
           <Route element={<ErrorPage/>} path='/*'></Route>
         </Routes>
       </BrowserRouter>

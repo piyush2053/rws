@@ -5,6 +5,10 @@ GENAI_LOCAL:"http://localhost:8090/askai",
 GENAI_PROD_vercel:'https://p-gen-v.vercel.app/api/hello'
 }
 
+export const EmbeddedUrls = {
+  IPACE:'https://ipace.w.moravia.com/Login'
+}
+
 export const initialFormData = {
     effortDays: 0,
     numberOfResource: 0,

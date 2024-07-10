@@ -1,20 +1,12 @@
-import React, { useState } from "react";
-import { Button, Drawer, Sidebar, SidebarLogo, TextInput } from "flowbite-react";
+import {  Drawer, Sidebar, TextInput } from "flowbite-react";
 import {
-    HiChartPie,
-    HiClipboard,
-    HiCollection,
-    HiInformationCircle,
-    HiLogin,
-    HiPencil,
-    HiSearch,
-    HiShoppingBag,
-    HiUsers,
+    HiSearch
 } from "react-icons/hi";
 import logo from '../assets/rwsLogoonly.png'
 import excel from '../assets/excel.png'
 import ai from '../assets/aiRWS.png'
 import '../index.css'
+import { BiSolidSpreadsheet } from "react-icons/bi";
 import { useDrawer } from "./Store/Provider";
 const DrawerComp = () => {
     const { open, setOpen } = useDrawer();
@@ -43,6 +35,9 @@ const DrawerComp = () => {
                                         </Sidebar.Item>
                                         <Sidebar.Item href="/team-indore" icon={() => <><img src={logo} className="h-5"/></>}>
                                             Our Team
+                                        </Sidebar.Item>
+                                        <Sidebar.Item href="/timesheet" icon={() => <BiSolidSpreadsheet color="#007373" className="text-[22px]"/>}>
+                                            TimeSheet
                                         </Sidebar.Item>
                                     </Sidebar.ItemGroup>
                                 </Sidebar.Items>

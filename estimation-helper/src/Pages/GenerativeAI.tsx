@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { FaCopy } from "react-icons/fa";
 import Loader from '../assets/loader.gif'
 import { URL } from '../utils/constants/contants'
-import { Button } from "flowbite-react";
-import { getCurrentEnv } from '../utils/funtions/funtion';
+import { Button, Tooltip } from "flowbite-react";
+import { getCurrentEnv, handleCopy } from '../utils/funtions/funtion';
 import { FaRegUser } from "react-icons/fa";
 import { BiSend } from "react-icons/bi";
+import { ToastContainer } from 'react-toastify';
 
 export default function GenAI() {
   const [question, setQuestion] = useState("")
@@ -12,6 +14,7 @@ export default function GenAI() {
   const [ResponseAI, setResponseAI] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
+  const [copied, setCopied] = useState(false)
   const HandleAsk = (e: any) => {
     e.preventDefault();
     setSearched(question)
@@ -52,6 +55,7 @@ export default function GenAI() {
     }
   };
   return (
+    <>
     <div className="flex flex-col mx-20 bg-white my-5 rounded-2xl shadow-xl max-h-[600px] ">
       <header className="flex items-center justify-between px-6 py-4 border-b">
         <div className="flex items-center gap-2">
@@ -87,13 +91,15 @@ export default function GenAI() {
             :
             <>{ResponseAI && <div className="flex items-start gap-3">
               <img src={Loader} className='h-5' />
-              <div className="bg-muted rounded-lg px-1 max-w-[75%]">
+              <Tooltip content={`${copied ? 'Copied' : 'Copy to Clipboard'}`} arrow={false} className="text-[12px] bg-white text-[#007373] border-2 border-[#007373]">
+              <div className="bg-muted rounded-lg px-1 max-w-[75%] flex hover:bg-[#ECEFF1] cursor-pointer" onClick={() => {handleCopy(Object.entries(ResponseAI).map(([key, value]) => value.replace(/\*/g, '').replace(/#/g, '').replace(/\n/g, '<br/>')).join(''));setCopied(true);}}>
                 <p className='text-[#616161]'>
                   {Object.entries(ResponseAI).map(([key, value]) => (
                     <div dangerouslySetInnerHTML={{ __html: value.replace(/\*/g, '').replace(/#/g, '').replace(/\n/g, '<br/>') }}></div>
                   ))}
                 </p>
               </div>
+              </Tooltip>
             </div>}</>
           }
 
@@ -111,6 +117,7 @@ export default function GenAI() {
         </form>
       </div>
     </div>
+    </>
   )
 }
 
@@ -138,44 +145,3 @@ function BotIcon(props: any) {
   )
 }
 
-
-function SendIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m22 2-7 20-4-9-9-4Z" />
-      <path d="M22 2 11 13" />
-    </svg>
-  )
-}
-
-
-function XIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
-  )
-}
