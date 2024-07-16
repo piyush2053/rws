@@ -1,7 +1,7 @@
 export const URL = {
 PROD: 'https://p-gen-v.vercel.app/api/estimate',
 LOCAL:"http://localhost:8080/estimate",
-GENAI_LOCAL:"http://localhost:8090/askai",
+GENAI_LOCAL:"https://p-gen-v.vercel.app/api/hello",
 GENAI_PROD_vercel:'https://p-gen-v.vercel.app/api/hello'
 }
 

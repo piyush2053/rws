@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { FaCopy } from "react-icons/fa";
-import Loader from '../assets/loader.gif'
+import Loader from '../assets/bot.png'
 import { URL } from '../utils/constants/contants'
 import { Button, Tooltip } from "flowbite-react";
 import { getCurrentEnv, handleCopy } from '../utils/funtions/funtion';
 import { FaRegUser } from "react-icons/fa";
 import { BiSend } from "react-icons/bi";
-import { ToastContainer } from 'react-toastify';
+import LoaderIOS from '../Components/SmallChunks/IosLoder';
 
 export default function GenAI() {
   const [question, setQuestion] = useState("")
@@ -56,67 +56,66 @@ export default function GenAI() {
   };
   return (
     <>
-    <div className="flex flex-col mx-20 bg-white my-5 rounded-2xl shadow-xl max-h-[600px] ">
-      <header className="flex items-center justify-between px-6 py-4 border-b">
-        <div className="flex items-center gap-2">
-          <BotIcon className="w-6 h-6 text-primary text-[#0E6ED6] shadow-lg rounded-lg" />
-          <h1 className="text-lg font-medium">Assistant</h1>
-        </div>
-      </header>
-      <div className="flex-1 overflow-auto p-6">
-        <div className="space-y-4">
-          <div className="flex items-start gap-3">
-            <div>
-              <img src={Loader} className='h-5' />
-            </div>
-            <div className="bg-muted rounded-lg px-1 max-w-[75%] py-auto text-[#616161]">
-              <p>Hello! I'm an AI assistant. How can I help you today?</p>
-            </div>
+      <div className="flex flex-col mx-10 bg-white my-5 rounded-2xl shadow-xl max-h-[600px] ">
+        <header className="flex items-center justify-between px-6 py-4 border-b">
+          <div className="flex items-center gap-2">
+            <BotIcon className="w-6 h-6 text-primary text-[#0E6ED6] shadow-lg rounded-lg" />
+            <h1 className="text-lg font-medium">Assistant</h1>
           </div>
+        </header>
+        <div className="flex-1 overflow-auto p-6">
+          <div className="space-y-4">
+            <div className="flex items-start gap-3 mb-5">
+              <div>
+                <img src={Loader} className='h-5 rounded-full' />
+              </div>
+              <div className="bg-muted rounded-lg px-1 max-w-[75%] py-auto text-[#616161]">
+                <p>Hello! I'm an AI assistant. How can I help you today?</p>
+              </div>
+            </div>
 
-          {Searched &&
-            <div className="flex items-start gap-3 justify-end">
-              <div className="bg-primary text-primary-foreground rounded-lg max-w-[75%] text-[#616161]">
-                <p>{Searched}</p>
+            {Searched &&
+              <div className="flex items-start gap-3 justify-end">
+                <div className="bg-primary text-primary-foreground rounded-lg max-w-[75%] text-[#616161]">
+                  <p>{Searched}</p>
+                </div>
+                <FaRegUser className='py-auto my-auto text-[#007373]' />
               </div>
-              <FaRegUser className='py-auto my-auto text-[#007373]' />
-            </div>
-          }
-          {loading ?
-            <div className="flex items-start gap-3">
-              <img src={Loader} className='h-5' />
-              <div className="bg-[#B2DFDB] animate-pulse rounded-full py-4 w-[40%] shadow-xl ">
+            }
+            {loading ?
+              <div className="flex items-start gap-3 mb-5">
+                <LoaderIOS />
               </div>
-            </div>
-            :
-            <>{ResponseAI && <div className="flex items-start gap-3">
-              <img src={Loader} className='h-5' />
-              <Tooltip content={`${copied ? 'Copied' : 'Copy to Clipboard'}`} arrow={false} className="text-[12px] bg-white text-[#007373] border-2 border-[#007373]">
-              <div className="bg-muted rounded-lg px-1 max-w-[75%] flex hover:bg-[#ECEFF1] cursor-pointer" onClick={() => {handleCopy(Object.entries(ResponseAI).map(([key, value]) => value.replace(/\*/g, '').replace(/#/g, '').replace(/\n/g, '<br/>')).join(''));setCopied(true);}}>
-                <p className='text-[#616161]'>
-                  {Object.entries(ResponseAI).map(([key, value]) => (
-                    <div dangerouslySetInnerHTML={{ __html: value.replace(/\*/g, '').replace(/#/g, '').replace(/\n/g, '<br/>') }}></div>
-                  ))}
-                </p>
-              </div>
+          :
+          <>{ResponseAI && <div className="flex items-start gap-3 mb-3">
+            <img src={Loader} className='h-5 rounded-full' />
+            <div className="bg-muted rounded-lg px-1 max-w-[75%] flex mb-3" >
+              <p className='text-[#616161]'>
+                {Object.entries(ResponseAI).map(([key, value]) => (
+                  <div dangerouslySetInnerHTML={{ __html: value.replace(/\*/g, '').replace(/#/g, '').replace(/\n/g, '<br/>') }}></div>
+                ))}
+              </p>
+              <Tooltip content={`${copied ? "Copied" : "Copy"}`} arrow={false} className="text-[12px] bg-white text-[#007373] shadow-md">
+                <FaCopy className={copied ? 'text-[#CFD8DC] text-sm my-auto mx-auto ml-4 ' : 'ml-4 text-[#90A4AE] text-sm my-auto mx-auto cursor-pointer'} onClick={() => { handleCopy(Object.entries(ResponseAI).map(([key, value]) => value.replace(/\*/g, '').replace(/#/g, '').replace(/\n/g, '')).join('')); setCopied(true); }} />
               </Tooltip>
-            </div>}</>
+            </div>
+          </div>}</>
           }
-
         </div>
-      </div>
-      <div className="border-t p-4 ">
+        <div className="border-t p-4 ">
         <form className="flex items-center gap-2">
           <input value={question}
             onKeyPress={HandleKeyPress}
             onChange={HandleChange}
             placeholder="Ask something..." className="tracking-wider flex-1 border-none focus:ring-0 focus:outline-none text-[#616161] text-sm" autoComplete="off" />
           <Button onClick={HandleAsk} size="icon" className='p-1 bg-[#0E6ED6] px-2'>
-            <BiSend className='h-5'/>
+            <BiSend className='h-5' />
           </Button>
         </form>
       </div>
-    </div>
+      </div>
+      
+    </div >
     </>
   )
 }

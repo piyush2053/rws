@@ -8,6 +8,8 @@ body {
   font-family: rws-normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.2; 
+  letter-spacing: -0.5px;
 }
 
 .section{
@@ -20,16 +22,17 @@ code {
 
 @font-face {
   font-family: 'rws-bold';
-  src: url('./assets/Fonts/VremenaGroteskBold.woff') format('truetype');
+  src: url('./assets/Fonts/Roboto-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'rws-semi-bold';
-  src: url('./assets/Fonts/VremenaGroteskMedium.woff') format('truetype');
+  font-weight: 600;
+  src: url('./assets/Fonts/Roboto-Medium.ttf') format('truetype');
 }
 @font-face {
   font-family: 'rws-normal';
-  src: url('./assets/Fonts/VremenaGroteskBook.woff') format('truetype');
+  src: url('./assets/Fonts/Roboto-Regular.ttf') format('truetype');
 }
 
 
