@@ -6,16 +6,18 @@ import { DotLottiePlayer } from "@dotlottie/react-player";
 const News = () => {
     const [news, setNews] = useState({ articles: [] });
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         fetch(URL.NEWS)
             .then(response => {
                 if (!response.ok) {
+                    setLoading(false)
                     throw new Error('Network response was not ok');
                 }
                 return response.json();
             })
-            .then(data => setNews(data))
-            .catch(error => setError(error));
+            .then(data => setNews(data)).then(() => setLoading(false))
+            .catch(error => setError(error)).then(()=>setLoading(false));
     }, []);
 
     return (
@@ -39,7 +41,7 @@ const News = () => {
                             </DotLottiePlayer>
                         </div>
                     </div>
-                    {news?.articles ?
+                    {!loading ?
                         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             {news?.articles.map((article: any) => (
                                 <div className="flex flex-col shadow-md rounded-lg overflow-hidden">

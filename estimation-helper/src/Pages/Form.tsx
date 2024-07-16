@@ -43,14 +43,6 @@ const Form = () => {
   return (
     <section className="bg-white w-[99%] p-10 my-2 mx-2 rounded-lg animate-fade">
       <div className="flex flex-col lg:flex-row">
-        <DotLottiePlayer
-          className='h-[550px]'
-          src={require('../assets/animations/estimatrion.lottie')}
-          autoplay
-          loop
-        >  
-        </DotLottiePlayer>
-        <div className='mx-10 my-10 bg-[#CFD8DC] p-[1px]'></div>
         <form onSubmit={handleSubmit} >
           <div className='flex gap-5 mt-10'>
             <div>
@@ -123,6 +115,15 @@ const Form = () => {
             </button>
           </div>
         </form>
+        <div className='mx-10 my-10 bg-[#CFD8DC] p-[1px]'></div>
+        
+        <DotLottiePlayer
+          className='h-[550px]'
+          src={require('../assets/animations/estimatrion.lottie')}
+          autoplay
+          loop
+        >  
+        </DotLottiePlayer>
         {ModalShow && <ModelAI data={formData} close={setModalShow}></ModelAI>}
       </div>
     </section>
