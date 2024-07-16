@@ -21,17 +21,6 @@ const NavbarTop = () => {
                     </a>
                 </Tooltip>
             </Navbar.Brand>
-            <Navbar.Toggle />
-            <Navbar.Collapse>
-                <div className="flex gap-2">
-                    <Tooltip content="Our Team" arrow={false} className="text-[12px] bg-white text-[#007373] shadow-md">
-                        <a className="inline-flex cursor-pointer font-bold h-8 items-center justify-center rounded-full bg-[#007373] px-2.5 text-sm text-white shadow transition-colors hover:bg-primary/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" href="/team-indore">
-                            <RiTeamFill />
-                        </a>
-                    </Tooltip>
-                    <PopoverMe />
-                </div>
-            </Navbar.Collapse>
         </Navbar>
     )
 

@@ -4,14 +4,14 @@ import { FaRegUser } from "react-icons/fa";
 const PopoverMe = () => {
     return (
         <Popover
-            placement="left-end"
+            placement="bottom-end"
             aria-labelledby="profile-popover"
             content={
-                <div className="w-64 p-3">
+                <div className="w-[200px] p-3">
                     <div className="mb-2 flex items-center justify-between">
                         <a href="https://github.com/piyush2053" className="transition-transform transform hover:scale-150 hover:z-10" target="_blank">
                             <img
-                                className="h-10 w-10 rounded-full focus:border-0"
+                                className="h-10 w-10 rounded-full focus:border-none"
                                 src={ME}
                                 alt="Piyush Patel"
                             />
@@ -20,7 +20,7 @@ const PopoverMe = () => {
                             <a
                                 href="https://github.com/piyush2053"
                                 target="_blank"
-                                className="rounded-lg bg-blue-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                className="rounded-lg bg-blue-700 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-400 bg-[#003D7F]"
                             >
                                 Follow
                             </a>
@@ -36,7 +36,7 @@ const PopoverMe = () => {
                     </p>
                     <p className="mb-4 text-sm" >
                         Full Stack Developer (TypeScript, React, Node.js) Builds complete web applications{' '}
-                        <a href="https://github.com/piyush2053" target="_blank" className="text-blue-600 hover:underline dark:text-blue-500">
+                        <a href="https://github.com/piyush2053" target="_blank" className="text-[#003D7F] hover:underline dark:text-blue-500">
                             Repositories
                         </a>
                     </p>
@@ -51,9 +51,10 @@ const PopoverMe = () => {
                 </div>
             }
         >
-            <a className="inline-flex cursor-pointer font-bold h-8 items-center justify-center rounded-full bg-[#003D7F] px-2.5 text-sm text-white shadow transition-colors hover:bg-primary/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
-                <FaRegUser/>
-            </a>
+            <div className="flex cursor-pointer hover:bg-[#F3F4F6] p-1 py-2 rounded-md">
+                <FaRegUser className="text-[22px] text-[#007373] mr-3"/>
+                <p>About</p>
+            </div>
         </Popover>
     )
 }

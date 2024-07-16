@@ -11,6 +11,7 @@ import { BiSolidSpreadsheet } from "react-icons/bi";
 import { FaFileExcel } from "react-icons/fa6";
 import { BsNewspaper } from "react-icons/bs";
 import { useDrawer } from "./Store/Provider";
+import PopoverMe from "./SmallChunks/PiyushPopover";
 const DrawerComp = () => {
     const { open, setOpen } = useDrawer();
     const handleClose = () => setOpen(false);
@@ -48,6 +49,7 @@ const DrawerComp = () => {
                                     <Sidebar.Item href="/team-indore" icon={() => <><img src={logo} className="h-5" /></>}>
                                         Our Team
                                     </Sidebar.Item>
+                                    <PopoverMe/>
                                 </Sidebar.ItemGroup>
                             </div>
                         </div>
