@@ -51,7 +51,7 @@ const PopoverMe = () => {
                 </div>
             }
         >
-            <a className="inline-flex cursor-pointer font-bold h-8 items-center justify-center rounded-full bg-[#0E6ED6] px-2.5 text-sm text-white shadow transition-colors hover:bg-primary/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+            <a className="inline-flex cursor-pointer font-bold h-8 items-center justify-center rounded-full bg-[#003D7F] px-2.5 text-sm text-white shadow transition-colors hover:bg-primary/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
                 <FaRegUser/>
             </a>
         </Popover>

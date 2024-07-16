@@ -17,7 +17,7 @@ const NavbarTop = () => {
                 <Tooltip content="Navigate to Home" arrow={false} className="text-[12px] bg-white text-[#007373] shadow-md">
                     <a className="cursor-pointer flex py-auto my-auto  ml-5" href="/">
                         <img src={logo} className="mr-3 h-4 lg:h-5" alt="RWS" />
-                        <p className="px-2 py-1 text-white text-xs rounded-full tracking-wide bg-[#007373] shadow-xl" >Omega</p>
+                        {/* <p className="px-2 py-1 text-white text-xs rounded-full tracking-wide bg-[#007373] shadow-xl" >Omega</p> */}
                     </a>
                 </Tooltip>
             </Navbar.Brand>

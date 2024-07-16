@@ -59,7 +59,7 @@ export default function GenAI() {
       <div className="flex flex-col mx-10 bg-white my-5 rounded-2xl shadow-xl max-h-[600px] ">
         <header className="flex items-center justify-between px-6 py-4 border-b">
           <div className="flex items-center gap-2">
-            <BotIcon className="w-6 h-6 text-primary text-[#0E6ED6] shadow-lg rounded-lg animate-pulse" />
+            {/* <BotIcon className="w-6 h-6 text-primary text-[#003D7F] shadow-lg rounded-lg animate-pulse" /> */}
             <h1 className="text-lg font-medium">Assistant</h1>
           </div>
         </header>
@@ -67,7 +67,7 @@ export default function GenAI() {
           <div className="space-y-4">
             <div className="flex items-start gap-3 mb-5">
               <div>
-                <img src={Loader} className='h-5 rounded-full' />
+              <BotIcon className="w-6 h-6 text-primary text-[#003D7F] rounded-lg animate-bounce" />
               </div>
               <div className="bg-muted rounded-lg px-1 max-w-[75%] py-auto text-[#616161] animate-typing">
                 <p>Hello! I'm an AI assistant. How can I help you today?</p>
@@ -88,7 +88,7 @@ export default function GenAI() {
               </div>
           :
           <>{ResponseAI && <div className="flex items-start gap-3 mb-3">
-            <img src={Loader} className='h-5 rounded-full' />
+            <BotIcon className="w-6 h-6 text-primary text-[#003D7F] rounded-lg animate-bounce" />
             <div className="bg-muted rounded-lg px-1 max-w-[75%] flex mb-3" >
               <p className='text-[#616161]'>
                 {Object.entries(ResponseAI).map(([key, value]) => (
@@ -108,7 +108,7 @@ export default function GenAI() {
             onKeyPress={HandleKeyPress}
             onChange={HandleChange}
             placeholder="Ask something..." className="tracking-wider flex-1 border-none focus:ring-0 focus:outline-none text-[#616161] text-sm" autoComplete="off" />
-          <Button onClick={HandleAsk} size="icon" className='p-1 bg-[#0E6ED6] px-2'>
+          <Button onClick={HandleAsk} size="icon" className='p-1 bg-[#003D7F] px-2'>
             <BiSend className='h-5' />
           </Button>
         </form>

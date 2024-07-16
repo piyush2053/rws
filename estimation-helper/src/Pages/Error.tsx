@@ -11,7 +11,7 @@ const ErrorPage = () => {
         </p>
         <a
           href="/"
-          className="inline-flex hover:bg-white hover:text-[#0E6ED6] h-10 items-center justify-center rounded-md bg-[#0E6ED6] px-6 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+          className="inline-flex hover:bg-white hover:text-[#007373] h-10 items-center justify-center rounded-md bg-[#007373] px-6 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
         >
           Go to Homepage
         </a>

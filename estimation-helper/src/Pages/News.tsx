@@ -22,7 +22,13 @@ const News = () => {
         <div>
             <section className="w-full py-10 md:py-8 lg:py-10">
                 <div className="container grid gap-8 px-4 md:px-6">
-                    <div className="flex justify-start">
+                    <div className="grid grid-cols-2 justify-between">
+                    <div>
+                                <h2 className="text-3xl font-bold text-startr">Latest News</h2>
+                                <p className="text-muted-foreground text-sm text-[#616161]">Stay informed and engaged with our news page. We deliver breaking news, insightful analysis, and captivating features from around the globe. Experience real-time updates, explore a wide range of topics, and delve deeper into the stories that matter with our expert commentary. Immerse yourself in the news through visually stunning content, and navigate effortlessly through our user-friendly platform. We are committed to providing reliable, unbiased journalism to keep you connected to the world</p>
+                                <h3 className="text-lg font-semibold mb-1 text-[#007373]">Category - Bussiness</h3>
+                                <p className="text-muted-foreground text-sm text-[#616161]">Here are all the latest news updates in the business domain.</p>
+                        </div>
                         <div>
                             <DotLottiePlayer
                                 className='h-[200px]'
