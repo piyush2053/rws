@@ -59,7 +59,7 @@ export default function GenAI() {
       <div className="flex flex-col mx-10 bg-white my-5 rounded-2xl shadow-xl max-h-[600px] ">
         <header className="flex items-center justify-between px-6 py-4 border-b">
           <div className="flex items-center gap-2">
-            <BotIcon className="w-6 h-6 text-primary text-[#0E6ED6] shadow-lg rounded-lg" />
+            <BotIcon className="w-6 h-6 text-primary text-[#0E6ED6] shadow-lg rounded-lg animate-pulse" />
             <h1 className="text-lg font-medium">Assistant</h1>
           </div>
         </header>
@@ -69,7 +69,7 @@ export default function GenAI() {
               <div>
                 <img src={Loader} className='h-5 rounded-full' />
               </div>
-              <div className="bg-muted rounded-lg px-1 max-w-[75%] py-auto text-[#616161]">
+              <div className="bg-muted rounded-lg px-1 max-w-[75%] py-auto text-[#616161] animate-typing">
                 <p>Hello! I'm an AI assistant. How can I help you today?</p>
               </div>
             </div>

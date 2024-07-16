@@ -13,6 +13,7 @@ import ErrorPage from './Pages/Error';
 import OurTeam from './Pages/OurTeam';
 import NavbarTop from './Components/Navbar';
 import TimeSheet from './Pages/Timesheet';
+import News from './Pages/News';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -54,6 +55,12 @@ root.render(
               <TimeSheet/>
             </>
           } path='/timesheet'></Route>
+          <Route
+            element={
+            <>
+              <News/>
+            </>
+          } path='/news'></Route>
           <Route element={<ErrorPage/>} path='/*'></Route>
         </Routes>
       </BrowserRouter>
