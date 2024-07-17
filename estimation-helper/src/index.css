@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: #ECEFF1;
+  background-color: white;
   margin: 0;
   font-family: rws-normal;
   -webkit-font-smoothing: antialiased;
@@ -75,4 +75,39 @@ body::-webkit-scrollbar-track {
   background-color: gray; 
   border-radius: 3px;
   border: 1px solid #f4f4f4;
+}
+
+
+
+.hero-text {
+  font-weight: bold;
+  font-size: 7em;
+  position: relative;
+  color: black;
+  background: url("https://builtin.com/sites/www.builtin.com/files/styles/og/public/2024-04/what-is-artificial-intelligence-ai.jpg") repeat top right;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 0.5s;
+}
+
+.hero-text:hover {
+  letter-spacing: 3px;
+}
+
+.upText {
+  animation: upText 1s ease;
+  animation-timing-function: ease;
+}
+
+@keyframes upText {
+  0% {
+    transform: translateY(2rem);
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
 }

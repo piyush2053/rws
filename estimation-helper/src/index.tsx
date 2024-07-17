@@ -14,6 +14,7 @@ import OurTeam from './Pages/OurTeam';
 import NavbarTop from './Components/Navbar';
 import TimeSheet from './Pages/Timesheet';
 import News from './Pages/News';
+import Footer from './Components/Footer';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -30,6 +31,7 @@ root.render(
             element={<>
               <BannerTop />
               <BannerSecond/>
+              <Footer/>
             </>} path='/'></Route>
           <Route
             element={

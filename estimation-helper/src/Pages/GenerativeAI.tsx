@@ -56,13 +56,7 @@ export default function GenAI() {
   };
   return (
     <>
-      <div className="flex flex-col mx-10 bg-white my-5 rounded-2xl shadow-xl max-h-[600px] ">
-        <header className="flex items-center justify-between px-6 py-4 border-b">
-          <div className="flex items-center gap-2">
-            {/* <BotIcon className="w-6 h-6 text-primary text-[#003D7F] shadow-lg rounded-lg animate-pulse" /> */}
-            <h1 className="text-lg font-medium">Assistant</h1>
-          </div>
-        </header>
+      <div className="flex flex-col mx-10 bg-white my-5 rounded-2xl max-h-[600px] ">
         <div className="flex-1 overflow-auto p-6">
           <div className="space-y-4">
             <div className="flex items-start gap-3 mb-5">
@@ -102,15 +96,13 @@ export default function GenAI() {
           </div>}</>
           }
         </div>
-        <div className="border-t p-4 ">
+        <div className="border-t p-4 rounded-full shadow-md mt-5">
         <form className="flex items-center gap-2">
           <input value={question}
             onKeyPress={HandleKeyPress}
             onChange={HandleChange}
-            placeholder="Ask something..." className="tracking-wider flex-1 border-none focus:ring-0 focus:outline-none text-[#616161] text-sm" autoComplete="off" />
-          <Button onClick={HandleAsk} size="icon" className='p-1 bg-[#003D7F] px-2'>
-            <BiSend className='h-5' />
-          </Button>
+            placeholder="Ask something..." className="tracking-wide pl-6 flex-1 border-none focus:ring-0 focus:outline-none text-[#616161] text-sm" autoComplete="off" />
+            <BiSend className='text-[22px] text-[#007373]' onClick={HandleAsk} />
         </form>
       </div>
       </div>

@@ -6,14 +6,14 @@ import C3 from '../../assets/c3.png'
 import { Carousel } from "flowbite-react";
 const BannerTop = () => {
     return (
-        <section className="section w-[99%] p-10 my-2 mx-2 rounded-lg">
+        <section className="bg-white w-[99%] px-10 py-4 my-2 mx-2 rounded-lg">
             <div className="flex justify-start">
-            <div className="container flex flex-col items-start  space-y-6 text-left">
+            <div className="container flex flex-col items-start space-y-6 text-left">
                 <div className="space-y-2">
-                    <h2 className="text-3xl font-bold tracking-tighter text-white sm:text-4xl md:text-5xl">
+                    <h2 className="hero-text text-3xl font-bold tracking-tighter text-[#212121] sm:text-4xl md:text-5xl">
                         Generative AI
                     </h2>
-                    <p className="text-white md:text-sm font-thin">
+                    <p className="text-[#212121] md:text-sm font-thin">
                     RWS has introduced a new generative AI feature developed by P-Gen-AI, designed for project estimation, content description, and image generation. This AI helps estimate project costs and timelines, generates detailed descriptions for various content types, and creates images based on text descriptions, streamlining processes and improving accuracy in project planning and content creation.
                     </p>
                     <Carousel className="h-56 sm:h-64 xl:h-80 2xl:h-96" slide={true}>
@@ -25,14 +25,14 @@ const BannerTop = () => {
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                     <a
                     href="/gen-ai"
-                        className="inline-flex h-10 items-center justify-center rounded-md bg-[#0E6ED6] px-8 text-md font-bold text-white shadow transition-colors hover:bg-primary/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                        className="inline-flex h-10 items-center justify-center rounded-md bg-[#007373] px-8 text-md font-bold text-white shadow transition-colors hover:bg-primary/60 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                         
                     >
                         Get Started
                     </a>
                     <a
                         href="/"
-                        className="inline-flex h-10 items-center justify-center rounded-md border border-primary-foreground bg-white px-8 text-sm font-bold text-[#0E6ED6] shadow-sm transition-colors hover:bg-primary-foreground/90 hover:text-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                        className="inline-flex h-10 items-center justify-center rounded-md border border-primary-foreground bg-white px-8 text-sm font-bold text-[#007373] shadow-sm transition-colors hover:bg-primary-foreground/90 hover:text-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                         
                     >
                         Learn More
