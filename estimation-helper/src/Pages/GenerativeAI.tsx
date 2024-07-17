@@ -56,7 +56,7 @@ export default function GenAI() {
   };
   return (
     <>
-      <div className="flex flex-col mx-10 bg-white my-5 rounded-2xl max-h-[600px] ">
+      <div className="flex flex-col mx-2 bg-white my-5 rounded-2xl max-h-[600px] ">
         <div className="flex-1 overflow-auto p-6">
           <div className="space-y-4">
             <div className="flex items-start gap-3 mb-5">
@@ -96,7 +96,8 @@ export default function GenAI() {
           </div>}</>
           }
         </div>
-        <div className="border-t p-4 rounded-full shadow-md mt-5">
+      </div>
+      <div className="border-t p-4 rounded-full shadow-md mt-5">
         <form className="flex items-center gap-2">
           <input value={question}
             onKeyPress={HandleKeyPress}
@@ -105,8 +106,6 @@ export default function GenAI() {
             <BiSend className='text-[22px] text-[#007373]' onClick={HandleAsk} />
         </form>
       </div>
-      </div>
-      
     </div >
     </>
   )
