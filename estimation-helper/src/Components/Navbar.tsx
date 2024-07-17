@@ -12,8 +12,8 @@ const NavbarTop = () => {
     return (
         <Navbar fluid className="py-2 bg-[#007373]" >
             <Navbar.Brand  >
-                <div onClick={() => setOpen(true)} className="inline-flex font-bold h-8 items-center justify-center rounded-md px-2 text-sm text-white hover:shadow-xl cursor-pointer rounded-lg hover:border-2 hover:border-white border-2 border-transparent">
-                    <HiMenu color="white" />
+                <div onClick={() => setOpen(true)} className="inline-flex font-bold h-8 items-center justify-center rounded-md px-2 text-sm text-white hover:shadow-xl cursor-pointer rounded-lg">
+                    <HiMenu color="white" className="text-[20px]" />
                 </div>
                 <a className="cursor-pointer flex py-auto my-auto" href="/">
                     <RWS />

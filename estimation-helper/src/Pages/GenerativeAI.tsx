@@ -63,7 +63,7 @@ export default function GenAI() {
               <div>
               <BotIcon className="w-6 h-6 text-primary text-[#003D7F] rounded-lg animate-bounce" />
               </div>
-              <div className="bg-muted rounded-lg px-1 max-w-[75%] py-auto text-[#616161] animate-typing">
+              <div className="bg-muted rounded-lg px-1 max-w-[75%] py-auto text-[#616161] animate-fade ">
                 <p>Hello! I'm an AI assistant. How can I help you today?</p>
               </div>
             </div>
