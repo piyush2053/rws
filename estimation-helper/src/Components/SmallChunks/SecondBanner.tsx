@@ -29,8 +29,7 @@ const BannerSecond = () => {
                         </a>
                     </div>
                     <div className="h-[400px] relative">
-                        <div className="z-50 absolute bg-white p-2 w-full"></div>
-                        <video autoPlay loop muted className="h-[400px] rounded-lg ">
+                        <video loop muted className="h-[400px] rounded-lg" controls>
                             <source src={require('../../assets/videos/VideoSS.mp4')} />
                         </video>
                     </div>
