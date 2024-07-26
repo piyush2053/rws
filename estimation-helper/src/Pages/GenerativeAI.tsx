@@ -22,7 +22,7 @@ export default function GenAI() {
     setLoading(true)
     try {
       const API_ENDPOINT = getCurrentEnv() ? URL.GENAI_LOCAL : URL.GENAI_PROD_vercel
-      fetch(`${API_ENDPOINT}/?query="${question}" and if someone ask code in this query so give the resposne that "Piyush has not taught me coding, Sorry cant help you. and also dont give this note Note: If you ask for code, I will respond with "Piyush has not taught me coding, Sorry I can't help you." "`)
+      fetch(`${API_ENDPOINT}/?query="${question}"`)
         .then(response => response.json())
         .then(data => {
           setResponseAI(data);
@@ -57,7 +57,7 @@ export default function GenAI() {
   return (
     <>
       <div className="flex flex-col mx-2 bg-white my-5 rounded-2xl max-h-[600px] ">
-        <div className="flex-1 overflow-auto p-6">
+        <div className="flex-1 overflow-auto p-6 custom-scrollbar-2">
           <div className="space-y-4">
             <div className="flex items-start gap-3 mb-5">
               <div>

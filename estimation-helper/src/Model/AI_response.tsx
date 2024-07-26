@@ -2,7 +2,7 @@ import React, { useState, useEffect, SetStateAction } from "react";
 import { ApiData, URL } from "../utils/constants/contants";
 import Loader from '../assets/loader.gif'
 import AI from '../assets/aiRWS.png'
-import del from '../assets/close.png'
+import { IoIosCloseCircle } from "react-icons/io";
 import '../index.css'
 import { getCurrentEnv } from "../utils/funtions/funtion";
 const ModalAI: React.FC<{ data: any , close:SetStateAction<any>}> = ({ data, close }) => {
@@ -72,9 +72,11 @@ const ModalAI: React.FC<{ data: any , close:SetStateAction<any>}> = ({ data, clo
                         <>
                         <div className="flex justify-between">
                             <img alt="ai" src={AI} className="h-5 rounded-full mb-4 animate-fade" />
-                            <div onClick={()=>close(false)} className="cursor-pointer hover:animate-pulse" title="Close"><img alt='closemodal' src={del} className='h-4 w-4 rounded-full' /></div>
+                            <div onClick={()=>close(false)} className="cursor-pointer hover:animate-pulse" title="Close">
+                                <IoIosCloseCircle className="text-[#007373] text-[20px]"/>
                             </div>
-                            <ul className="custom-scrollbar p-2 bg-[#ECEFF1] rounded-lg">
+                            </div>
+                            <ul className="custom-scrollbar p-2 bg-white rounded-lg">
                                 {Object.entries(apiData).map(([key, value]) => (
                                     <li key={key} className="text-[12px]">
                                         <div dangerouslySetInnerHTML={{ __html: value.replace(/\*/g, '').replace(/#/g, '').replace(/\n/g, '<br/>') }} />
@@ -97,7 +99,7 @@ const ModalAI: React.FC<{ data: any , close:SetStateAction<any>}> = ({ data, clo
                                 <button
                                     onClick={handleGenerate}
                                     disabled={loading}
-                                    className="inline-flex hover:bg-white hover:text-[#0E6ED6] h-7 items-center justify-center rounded-md bg-[#0E6ED6] px-4 text-xs font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+                                    className="inline-flex hover:bg-white hover:text-[#007373] h-7 items-center justify-center rounded-md bg-[#007373] px-4 text-xs font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
                                     Generate Excel
                                 </button>
                             </div>

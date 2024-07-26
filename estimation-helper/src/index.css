@@ -77,6 +77,27 @@ body::-webkit-scrollbar-track {
   border: 1px solid #f4f4f4;
 }
 
+.custom-scrollbar-2 {
+  overflow-y: auto;
+  scrollbar-width: thin; 
+  scrollbar-color: rgb(208, 208, 208) #f4f4f4;
+}
+
+.custom-scrollbar-2::-webkit-scrollbar {
+  border-radius: 50px;
+  width: 6px; 
+}
+
+.custom-scrollbar-2::-webkit-scrollbar-track {
+  background: #f4f4f4;
+}
+
+.custom-scrollbar-2::-webkit-scrollbar-thumb {
+  background-color: gray; 
+  border-radius: 3px;
+  border: 1px solid #f4f4f4;
+}
+
 
 
 .hero-text {
